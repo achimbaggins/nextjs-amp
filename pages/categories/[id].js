@@ -1,14 +1,12 @@
 import { Inter } from "next/font/google";
-import Layout from "../components/Layout";
-import Link from "next/link";
-import Post from "../components/Post";
-import categories from "../data/categories.json";
+import Layout from "../../components/Layout";
+import Post from "../../components/Post";
 import Recommendations from "@/components/Recommendations";
 
 const inter = Inter({ subsets: ["latin"] });
 export const config = { amp: true };
 
-function Home({ posts }) {
+function Categories({ posts }) {
   return (
     <>
       <Recommendations />
@@ -21,12 +19,12 @@ function Home({ posts }) {
   );
 }
 
-Home.getInitialProps = async () => {
-  const res = await fetch(`https://kampung-media.com/wp-json/wp/v2/posts`);
-
+Categories.getInitialProps = async (context) => {
+  const res = await fetch(
+    `https://kampung-media.com/wp-json/wp/v2/posts?categories=${context.query?.id}`
+  );
   const posts = await res.json();
-
   return { posts };
 };
 
-export default Home;
+export default Categories;
