@@ -18,7 +18,9 @@ const Sidebar = ({ categories }) => {
           <ul className="menu">
             <li>
               <div className="sidebar-header">
-                <h2 style={{ marginBottom: 0 }}>Private Blog Network</h2>
+                <h2 style={{ marginBottom: 0, textAlign: "right" }}>
+                  Private Blog Network
+                </h2>
                 <div
                   style={{
                     width: 60,
