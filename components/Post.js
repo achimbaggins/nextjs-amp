@@ -27,7 +27,7 @@ const Post = ({ post }) => {
             __html: post?.excerpt?.rendered,
           }}
         ></p>
-        <Link href="/post/[pid]" as={`/post/${post.id}`}>
+        <Link href="/post/[slug]" as={`/post/${post.slug}`}>
           <div className="readmore">read more</div>
         </Link>
       </div>

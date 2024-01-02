@@ -44,7 +44,7 @@ function Home({ post, categories }) {
 Home.getInitialProps = async (context) => {
   console.log(context.query);
   const res = await fetch(
-    `https://kampung-media.com/wp-json/wp/v2/posts/${context.query.slug}`
+    `https://kampung-media.com/wp-json/wp/v2/posts?slug=${context.query.slug}`
   );
   const resCat = await fetch(
     `https://kampung-media.com/wp-json/wp/v2/categories`
@@ -62,7 +62,7 @@ Home.getInitialProps = async (context) => {
     return data;
   });
 
-  return { post, categories: customeCat };
+  return { post: post[0], categories: customeCat };
 };
 
 export default Home;

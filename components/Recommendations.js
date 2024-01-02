@@ -15,7 +15,7 @@ export default function Recommendations({ posts }) {
       >
         {posts.map((val, index) => {
           return (
-            <Link href="/post/[slug]" as={`/post/${val.id}`} key={index}>
+            <Link href="/post/[slug]" as={`/post/${val.slug}`} key={index}>
               <div className="item-post">
                 <amp-img
                   width="150"

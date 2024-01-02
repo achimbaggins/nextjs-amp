@@ -13,7 +13,6 @@ export default function Pagination({ totalPages }) {
   );
   const endPage = Math.min(startPage + ITEMS_PER_PAGE - 1, totalPages);
 
-  console.log(router.asPath);
   return (
     <>
       <div className="container-pagination">
@@ -33,8 +32,6 @@ export default function Pagination({ totalPages }) {
             if (pageNumber > totalPages) {
               return null;
             }
-
-            console.log(router.asPath);
 
             return (
               <Link
