@@ -18,17 +18,8 @@ const Sidebar = ({ categories }) => {
           <ul className="menu">
             <li>
               <div className="sidebar-header">
-                <h2 style={{ marginBottom: 0, textAlign: "right" }}>
-                  Private Blog Network
-                </h2>
-                <div
-                  style={{
-                    width: 60,
-                    height: 2,
-                    borderRadius: 20,
-                    backgroundColor: "#04aa6d",
-                  }}
-                ></div>
+                <h2>Private Blog Network</h2>
+                <div className="side-border" />
               </div>
               <div style={{ display: "flex", marginBottom: 20 }}>
                 <button className="btn-outline">Daftar</button>
@@ -36,7 +27,7 @@ const Sidebar = ({ categories }) => {
               </div>
             </li>
             <li>
-              <h2>Categories</h2>
+              <h2 className="menu-cat">Categories</h2>
               <ul
                 style={{
                   display: "flex",
@@ -49,8 +40,7 @@ const Sidebar = ({ categories }) => {
                   return (
                     <li key={index}>
                       <Link
-                        href={"/categories/[name]/[pid]"}
-                        as={`/categories/${cat.slug}/${cat.id}`}
+                        href={`/categories/${cat.slug}/${cat.id}`}
                         className={
                           router.query.name === cat.slug ? "active" : ""
                         }
@@ -68,24 +58,17 @@ const Sidebar = ({ categories }) => {
 
       <aside id="desktop-sidebar"></aside>
 
-      <style jsx>
+      <style jsx global>
         {`
           .sidebar {
             background-color: #fafafa;
             color: #333;
-            padding-right: 20px;
           }
 
           #desktop-sidebar {
             width: 250px;
             background: #fafafa;
             padding: 0px 20px;
-          }
-
-          @media screen and (max-width: 767px) {
-            #desktop-sidebar {
-              padding-right: 20px;
-            }
           }
 
           #desktop-sidebar .menu {
@@ -96,9 +79,19 @@ const Sidebar = ({ categories }) => {
           .sidebar-header {
             display: flex;
             flex-direction: column;
-            justify-items: flex-end;
-            align-items: flex-end;
             margin-bottom: 20px;
+            margin: 4rem 0px;
+          }
+
+          .sidebar-header h2 {
+            margin: 0px;
+          }
+
+          .sidebar-header .side-border {
+            width: 60px;
+            height: 2px;
+            border-radius: 20px;
+            background-color: #04aa6d;
           }
 
           button {
@@ -106,6 +99,7 @@ const Sidebar = ({ categories }) => {
             border-radius: 10px;
           }
 
+          button:last-child,
           button:last-child {
             margin-right: 0px;
           }
@@ -133,6 +127,7 @@ const Sidebar = ({ categories }) => {
             display: inline-block;
             font-size: 16px;
           }
+
           ul {
             margin: 0;
             padding: 0;
@@ -141,12 +136,31 @@ const Sidebar = ({ categories }) => {
           ul > li {
             list-style-type: none;
             color: black;
-            padding: 10;
             margin: 0;
+          }
+
+          ul li .menu-cat {
+            margin: 0px;
+            padding: 0px;
+            font-size: 2.5rem;
           }
 
           a .active {
             text-decoration: none;
+          }
+
+          @media screen and (max-width: 767px) {
+            .sidebar {
+              padding: 0 20px;
+            }
+
+            .menu {
+              padding: 0px 20px;
+            }
+
+            .menu li a {
+              font-size: 14px;
+            }
           }
         `}
       </style>

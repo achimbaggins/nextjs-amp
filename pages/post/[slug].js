@@ -27,6 +27,7 @@ function Home({ post, categories }) {
           .content {
             max-width: 65%;
             margin: auto;
+            padding: 30px 0px;
           }
 
           @media screen and (max-width: 767px) {

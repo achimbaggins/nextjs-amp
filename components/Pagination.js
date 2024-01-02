@@ -13,11 +13,19 @@ export default function Pagination({ totalPages }) {
   );
   const endPage = Math.min(startPage + ITEMS_PER_PAGE - 1, totalPages);
 
+  console.log(router.asPath);
   return (
     <>
       <div className="container-pagination">
         <div className="pagination">
-          <Link href={`?page=${startPage - ITEMS_PER_PAGE}`}>&laquo;</Link>
+          <Link
+            href={{
+              href: router.asPath,
+              query: { page: startPage - ITEMS_PER_PAGE },
+            }}
+          >
+            &laquo;
+          </Link>
           {Array.from({ length: ITEMS_PER_PAGE }, (_, index) => {
             const pageNumber = startPage + index;
             const isActive = pageNumber === currentPage;
@@ -26,10 +34,14 @@ export default function Pagination({ totalPages }) {
               return null;
             }
 
+            console.log(router.asPath);
+
             return (
               <Link
                 key={pageNumber}
-                href={`?page=${pageNumber}`}
+                href={{
+                  query: { ...router.query, page: pageNumber },
+                }}
                 className={isActive ? "active" : ""}
               >
                 {pageNumber}
@@ -37,7 +49,14 @@ export default function Pagination({ totalPages }) {
             );
           })}
           {endPage < totalPages && (
-            <Link href={`?page=${endPage + 1}`}>&raquo;</Link>
+            <Link
+              href={{
+                href: router.asPath,
+                query: { page: endPage + 1 },
+              }}
+            >
+              &raquo;
+            </Link>
           )}
         </div>
       </div>
