@@ -1,255 +1,80 @@
+import { formattedDate } from "@/utils/formatter";
+import Link from "next/link";
 import React from "react";
 
-export default function Recommendations() {
-  const images =
-    "https://images.pexels.com/photos/1128678/pexels-photo-1128678.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+export default function Recommendations({ posts }) {
   return (
     <div className="recommendations">
-      <h3>Recommendations</h3>
+      <h3 style={{ margin: 0 }}>Berita Terbaru</h3>
+
       <amp-carousel
         width="auto"
-        height="160"
+        height="180"
         layout="fixed-height"
         type="carousel"
       >
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Apple"
-            src={images}
-          ></amp-img>
-          <p className="name">Apple</p>
-          <p className="star">★★★★★</p>
-          <p className="price">$1.99</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Apple"
-            src={images}
-          ></amp-img>
-          <p className="name">Apple</p>
-          <p className="star">★★★★★</p>
-          <p className="price">$1.99</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Apple"
-            src={images}
-          ></amp-img>
-          <p className="name">Apple</p>
-          <p className="star">★★★★★</p>
-          <p className="price">$1.99</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Apple"
-            src={images}
-          ></amp-img>
-          <p className="name">Apple</p>
-          <p className="star">★★★★★</p>
-          <p className="price">$1.99</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Apple"
-            src={images}
-          ></amp-img>
-          <p className="name">Apple</p>
-          <p className="star">★★★★★</p>
-          <p className="price">$1.99</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Apple"
-            src={images}
-          ></amp-img>
-          <p className="name">Apple</p>
-          <p className="star">★★★★★</p>
-          <p className="price">$1.99</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Apple"
-            src={images}
-          ></amp-img>
-          <p className="name">Apple</p>
-          <p className="star">★★★★★</p>
-          <p className="price">$1.99</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Apple"
-            src={images}
-          ></amp-img>
-          <p className="name">Apple</p>
-          <p className="star">★★★★★</p>
-          <p className="price">$1.99</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Apple"
-            src={images}
-          ></amp-img>
-          <p className="name">Apple</p>
-          <p className="star">★★★★★</p>
-          <p className="price">$1.99</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Apple"
-            src={images}
-          ></amp-img>
-          <p className="name">Apple</p>
-          <p className="star">★★★★★</p>
-          <p className="price">$1.99</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Orange"
-            src={images}
-          ></amp-img>
-          <p className="name">Orange</p>
-          <p className="star">★★★★☆</p>
-          <p className="price">$0.99</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Pear"
-            src={images}
-          ></amp-img>
-          <p className="name">Pear</p>
-          <p className="star">★★★☆☆</p>
-          <p className="price">$1.50</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Banana"
-            src={images}
-          ></amp-img>
-          <p className="name">Banana</p>
-          <p className="star">★★★★★</p>
-          <p className="price">$1.50</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Apple"
-            src={images}
-          ></amp-img>
-          <p className="name">Apple 2</p>
-          <p className="star">★★★★★</p>
-          <p className="price">$1.99</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Orange"
-            src={images}
-          ></amp-img>
-          <p className="name">Orange 2</p>
-          <p className="star">★★★★☆</p>
-          <p className="price">$0.99</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Pear"
-            src={images}
-          ></amp-img>
-          <p className="name">Pear 2</p>
-          <p className="star">★★★☆☆</p>
-          <p className="price">$1.50</p>
-        </a>
-        <a href="#" role="listitem">
-          <amp-img
-            width="640"
-            height="426"
-            layout="responsive"
-            alt="Banana"
-            src={images}
-          ></amp-img>
-          <p className="name">Banana 2</p>
-          <p className="star">★★★★★</p>
-          <p className="price">$1.50</p>
-        </a>
+        {posts.map((val, index) => {
+          return (
+            <Link href="/post/[slug]" as={`/post/${val.id}`} key={index}>
+              <div className="item-post">
+                <amp-img
+                  width="150"
+                  height="150"
+                  layout="responsive"
+                  alt="Apple"
+                  className="item-img"
+                  src={val.cover}
+                ></amp-img>
+                <div className="item-content">
+                  <h2>{val.title.rendered}</h2>
+                  <span>{formattedDate(val.date)}</span>
+                </div>
+              </div>
+            </Link>
+          );
+        })}
       </amp-carousel>
       <style jsx>
         {`
-          :root {
-            --color-primary: #005af0;
-            --color-secondary: #00dcc0;
-            --color-text-light: #fff;
-            --color-text-dark: #000;
-            --color-bg-light: #fafafc;
-            --color-bg-grey: rgba(0, 0, 0, 0.8);
-
-            --space-1: 0.5rem; /* 8px */
-            --space-2: 1rem; /* 16px */
-            --space-3: 1.5rem; /* 24px */
-            --space-4: 2rem; /* 32px */
-            --box-shadow-1: 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-              0 1px 1px -1px rgba(0, 0, 0, 0.14),
-              0 1px 5px 0 rgba(0, 0, 0, 0.12);
-          }
-          p {
-            margin: 0;
-            font-size: 16px;
-          }
-          span {
-            font-size: 12px;
-            margin: 0;
-          }
-          .item {
-            padding-bottom: 10px;
-          }
-
           .recommendations {
             max-width: 65%;
             margin: auto;
+            margin-bottom: 20px;
+          }
+
+          .recommendations .item-post {
+            display: flex;
+            flex-direction: column;
+            background-color: #fafafa;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            height: 160px;
+            object-fit: cover;
+          }
+
+          .item-post amp-img {
+            border-radius: 10px;
+            height: 100%;
+            border-width: 1;
+            border-color: yellow;
+          }
+
+          .item-content {
+            max-width: 120px;
+            padding: 10px;
+            line-height: 0.8;
+          }
+
+          .item-post h2 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: bold;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+          .recommendations span {
+            font-size: 1rem;
+            margin: 0;
           }
 
           @media screen and (max-width: 767px) {

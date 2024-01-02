@@ -1,5 +1,8 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 const Sidebar = ({ categories }) => {
+  const router = useRouter();
+
   return (
     <>
       <amp-sidebar
@@ -15,9 +18,7 @@ const Sidebar = ({ categories }) => {
           <ul className="menu">
             <li>
               <div className="sidebar-header">
-                <h2 style={{ textAlign: "right", marginBottom: 0 }}>
-                  Private Blog Network
-                </h2>
+                <h2 style={{ marginBottom: 0 }}>Private Blog Network</h2>
                 <div
                   style={{
                     width: 60,
@@ -33,18 +34,27 @@ const Sidebar = ({ categories }) => {
               </div>
             </li>
             <li>
-              <h2 style={{ textAlign: "right" }}>Categories</h2>
+              <h2>Categories</h2>
               <ul
                 style={{
                   display: "flex",
                   flexWrap: "wrap",
                   flexDirection: "column",
+                  justifyContent: "start",
                 }}
               >
                 {categories.map?.((cat, index) => {
                   return (
-                    <li key={index} style={{ textAlign: "right" }}>
-                      <Link href={`/categories/${cat.id}`}>{cat?.name}</Link>
+                    <li key={index}>
+                      <Link
+                        href={"/categories/[name]/[pid]"}
+                        as={`/categories/${cat.slug}/${cat.id}`}
+                        className={
+                          router.query.name === cat.slug ? "active" : ""
+                        }
+                      >
+                        {cat?.name}
+                      </Link>
                     </li>
                   );
                 })}
@@ -121,15 +131,20 @@ const Sidebar = ({ categories }) => {
             display: inline-block;
             font-size: 16px;
           }
-
-          ul > li > ul > li {
-            list-style-type: none;
-            color: black;
+          ul {
+            margin: 0;
+            padding: 0;
           }
 
-          a {
+          ul > li {
+            list-style-type: none;
             color: black;
-            font-size: 12px;
+            padding: 10;
+            margin: 0;
+          }
+
+          a .active {
+            text-decoration: none;
           }
         `}
       </style>

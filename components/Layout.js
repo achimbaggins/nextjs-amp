@@ -45,10 +45,19 @@ const Layout = (props) => {
         h2 {
           font-size: 2.8rem;
         }
-        a {
+        ul li > a {
           color: black;
           text-decoration: none;
           background-color: transparent;
+        }
+
+        ul li > a.active {
+          color: orange;
+        }
+
+        .recommendations a {
+          color: black;
+          text-decoration: none;
         }
 
         .site-wrapper {
@@ -82,18 +91,6 @@ const Layout = (props) => {
           cursor: pointer;
           font-size: 22px;
         }
-
-        // .menu {
-        //   list-style: none;
-        // }
-        // .menu a {
-        //   text-transform: uppercase;
-        //   display: inline-block;
-        //   margin-bottom: 15px;
-        // }
-        // .menu a:hover {
-        //   color: #333;
-        // }
       `}</style>
     </div>
   );

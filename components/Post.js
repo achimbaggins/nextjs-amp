@@ -1,41 +1,90 @@
 import Link from "next/link";
-import { useEffect } from "react";
 
 const Post = ({ post }) => {
-  useEffect(() => {
-    console.log("use effect");
-  }, []);
-
   return (
     <div className="post">
-      <h2>{post?.yoast_head_json?.title}</h2>
-      <div className="category">
-        {/* <Link href="/category/[cid]" as={`/category/${post.category.id}`}>
-          {post.category.title}
-        </Link> */}
+      <div className="post-img">
+        <amp-img
+          width="300"
+          height="200"
+          layout="fill"
+          alt="Apple"
+          className="item-img"
+          src={post.cover}
+        />
       </div>
-
-      <div className="text">
-        <p
+      <div style={{ flex: 1 }}>
+        <h2
+          className="post-header"
           dangerouslySetInnerHTML={{
-            __html: post?.yoast_head_json?.og_description,
+            __html: post?.title?.rendered,
+          }}
+        />
+
+        <p
+          className="content"
+          dangerouslySetInnerHTML={{
+            __html: post?.excerpt?.rendered,
           }}
         ></p>
-        {"... "}
         <Link href="/post/[pid]" as={`/post/${post.id}`}>
           <div className="readmore">read more</div>
         </Link>
       </div>
+      <style jsx global>
+        {`
+          @media screen and (max-width: 767px) {
+            .post p {
+              margin: 0;
+              font-size: 1.3rem;
+            }
+          }
+        `}
+      </style>
       <style jsx>{`
         .post {
           margin-bottom: 60px;
           max-width: 65%;
           margin: auto;
+          display: flex;
+          flex-direction: row;
+          margin-bottom: 20px;
+        }
+
+        .post-img {
+          width: 30%;
+          margin-right: 20px;
+          position: relative;
+        }
+
+        .post-header {
+          margin: 0;
+        }
+
+        p {
+          margin: 0;
         }
 
         @media screen and (max-width: 767px) {
           .post {
             max-width: 85%;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .post-img {
+            height: 200px;
+            width: 100%;
+          }
+
+          .post h2 {
+            font-size: 1.8rem;
+            margin-top: 10px;
+          }
+
+          p {
+            margin: 0;
+            font-size: 1.3rem;
           }
         }
 
