@@ -79,7 +79,7 @@ export default function Recommendations({ posts }) {
 
           @media screen and (max-width: 767px) {
             .recommendations {
-              max-width: 85%;
+              max-width: 90%;
             }
           }
         `}

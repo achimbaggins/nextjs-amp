@@ -18,7 +18,13 @@ function Home({ post, categories, lastPosts }) {
         <link rel="canonical" href={router.asPath} />
       </Head>
       <Layout categories={categories} posts={lastPosts}>
-        <div className={`${inter.className} content `}>
+        <div className={`${inter.className} content-detail `}>
+          <ul className="breadcrumb">
+            <li>
+              <Link href={"/"}>Home &#8250;</Link>{" "}
+            </li>
+            <li>{post.slug}</li>
+          </ul>
           <h1>{post.title.rendered}</h1>
           <p
             dangerouslySetInnerHTML={{
@@ -27,18 +33,44 @@ function Home({ post, categories, lastPosts }) {
           ></p>
         </div>
       </Layout>
-      <style jsx>
+      <style jsx global>
         {`
-          .content {
+          .content-detail {
             max-width: 65%;
             margin: auto;
             padding: 30px 0px;
           }
 
           @media screen and (max-width: 767px) {
-            .content {
+            .content-detail {
               max-width: 85%;
             }
+          }
+
+          ul.breadcrumb {
+            padding: 10px 0;
+            list-style: none;
+            margin: 0;
+          }
+
+          ul.breadcrumb li {
+            display: inline;
+            font-size: 12px;
+            text-indent: 10px;
+            margin: 0;
+            padding: 0;
+          }
+
+          ul.breadcrumb li a {
+            color: orange;
+            text-decoration: none;
+            font-weight: bold;
+          }
+
+          /* Add a color on mouse-over */
+          ul.breadcrumb li a:hover {
+            color: #01447e;
+            text-decoration: none;
           }
         `}
       </style>
