@@ -1,4 +1,3 @@
-import { Inter } from "next/font/google";
 import Layout from "../../../components/Layout";
 import Post from "../../../components/Post";
 import Recommendations from "@/components/Recommendations";
@@ -8,9 +7,7 @@ import { useRouter } from "next/router";
 import Pagination from "@/components/Pagination";
 import Empty from "@/components/Empty";
 
-const inter = Inter({ subsets: ["latin"] });
 export const config = { amp: true };
-
 function Home({ posts, categories, search, totalPages, lastPosts }) {
   const router = useRouter();
   return (
@@ -77,7 +74,7 @@ Home.getInitialProps = async (context) => {
   const customePosts = posts.map((val) => {
     val.cover = val._embedded["wp:featuredmedia"]
       ? val._embedded["wp:featuredmedia"][0]["media_details"]["sizes"][
-          "medium"
+          "thumbnail"
         ]?.["source_url"]
       : "https://d12v9rtnomnebu.cloudfront.net/oursite/logo_white.png";
     return val;
@@ -86,7 +83,7 @@ Home.getInitialProps = async (context) => {
   const customResLastPosts = lastPosts.map((val) => {
     val.cover = val._embedded["wp:featuredmedia"]
       ? val._embedded["wp:featuredmedia"][0]["media_details"]["sizes"][
-          "medium"
+          "thumbnail"
         ]?.["source_url"]
       : "https://d12v9rtnomnebu.cloudfront.net/oursite/logo_white.png";
     return val;

@@ -92,7 +92,6 @@ const Sidebar = ({ categories, posts }) => {
 
           #desktop-sidebar {
             width: 250px;
-            height: 100vh;
             background: #fafafa;
             padding: 0px 20px;
           }

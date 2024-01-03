@@ -1,4 +1,3 @@
-import { Inter } from "next/font/google";
 import Layout from "../components/Layout";
 import Post from "../components/Post";
 import Recommendations from "@/components/Recommendations";
@@ -7,9 +6,8 @@ import Search from "@/components/Search";
 import Pagination from "@/components/Pagination";
 import { useRouter } from "next/router";
 import Empty from "@/components/Empty";
-const inter = Inter({ subsets: ["latin"] });
-export const config = { amp: true };
 
+export const config = { amp: true };
 function Home({ posts, categories, search, totalPages, lastPosts }) {
   const router = useRouter();
   return (

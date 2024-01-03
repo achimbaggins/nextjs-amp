@@ -6,7 +6,6 @@ import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 export const config = { amp: true };
-
 function Home({ post, categories, lastPosts }) {
   const router = useRouter();
 
