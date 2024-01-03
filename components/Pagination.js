@@ -76,12 +76,14 @@ export default function Pagination({ totalPages }) {
             float: left;
             padding: 5px 16px;
             text-decoration: none;
+            font-size: 1.4rem;
           }
 
           .pagination a.active {
-            background-color: #4caf50;
+            background-color: black;
             color: white;
             border-radius: 10px;
+            font-weight: bold;
           }
         `}
       </style>

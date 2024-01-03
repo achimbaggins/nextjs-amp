@@ -38,6 +38,7 @@ const Post = ({ post }) => {
             display: flex;
             flex-direction: row;
             margin-bottom: 20px;
+            font-size: 1.5rem;
           }
 
           .post-header {
@@ -131,7 +132,7 @@ const Post = ({ post }) => {
             background: #ddd;
           }
           .readmore {
-            font-size: 1.6rem;
+            font-size: 1.2rem;
             color: orange;
           }
           @media screen and (max-width: 1024px) {

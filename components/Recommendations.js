@@ -5,7 +5,7 @@ import React from "react";
 export default function Recommendations({ posts }) {
   return (
     <div className="recommendations">
-      <h3 style={{ margin: 0 }}>Berita Terbaru</h3>
+      <h3>Berita Terbaru</h3>
 
       <amp-carousel
         width="auto"
@@ -40,6 +40,13 @@ export default function Recommendations({ posts }) {
             max-width: 65%;
             margin: auto;
             margin-bottom: 20px;
+          }
+
+          .recommendations h3 {
+            font-size: 1.8rem;
+            margin: 0;
+            margin-bottom: 10px;
+            color: black;
           }
 
           .recommendations .item-post {

@@ -41,6 +41,10 @@ function Home({ post, categories, lastPosts }) {
             padding: 30px 0px;
           }
 
+          .content-detail p {
+            font-size: 1.8rem;
+          }
+
           @media screen and (max-width: 767px) {
             .content-detail {
               max-width: 85%;
@@ -64,7 +68,8 @@ function Home({ post, categories, lastPosts }) {
           ul.breadcrumb li a {
             color: orange;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 500;
+            font-size: 1.5rem;
           }
 
           /* Add a color on mouse-over */

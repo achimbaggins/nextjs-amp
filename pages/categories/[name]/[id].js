@@ -6,6 +6,7 @@ import Head from "next/head";
 import Search from "@/components/Search";
 import { useRouter } from "next/router";
 import Pagination from "@/components/Pagination";
+import Empty from "@/components/Empty";
 
 const inter = Inter({ subsets: ["latin"] });
 export const config = { amp: true };
@@ -34,7 +35,7 @@ function Home({ posts, categories, search, totalPages, lastPosts }) {
             <Pagination totalPages={totalPages} />
           </>
         ) : (
-          <div>Data Kosong...</div>
+          <Empty />
         )}
       </Layout>
     </>

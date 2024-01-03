@@ -1,4 +1,3 @@
-import { formattedDate } from "@/utils/formatter";
 import Link from "next/link";
 import { useRouter } from "next/router";
 const Sidebar = ({ categories, posts }) => {
@@ -61,7 +60,7 @@ const Sidebar = ({ categories, posts }) => {
                             router.query.name === cat.slug ? "active" : ""
                           }
                         >
-                          {cat?.name}
+                          &#10551; {cat?.name}
                         </Link>
                       </li>
                     );
@@ -82,8 +81,18 @@ const Sidebar = ({ categories, posts }) => {
             color: #333;
           }
 
+          .sidebar-trigger {
+            background: transparent;
+            border: 0;
+            outline: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 22px;
+          }
+
           #desktop-sidebar {
             width: 250px;
+            height: 100vh;
             background: #fafafa;
             padding: 0px 20px;
           }
@@ -102,6 +111,10 @@ const Sidebar = ({ categories, posts }) => {
 
           .sidebar-header h2 {
             margin: 0px;
+          }
+
+          a > h2 {
+            font-size: 2.5rem;
           }
 
           .sidebar-header .side-border {
@@ -182,11 +195,11 @@ const Sidebar = ({ categories, posts }) => {
           }
 
           ul {
-            margin: 0;
-            padding: 0;
+            margin: 0px;
+            padding: 0px;
           }
 
-          ul > li {
+          ul li {
             list-style-type: none;
             color: black;
             margin: 0;
@@ -195,16 +208,15 @@ const Sidebar = ({ categories, posts }) => {
           ul li .submenu-header {
             margin: 0px;
             padding: 0px;
-            font-size: 2.5rem;
-            margin-bottom: 1.8rem;
+            font-size: 2.2rem;
           }
 
-          a {
-            text-decoration: none;
+          .sub-menu a {
+            font-size: 1.5rem;
           }
 
-          a .active {
-            text-decoration: none;
+          ul li > a.active {
+            color: orange;
           }
 
           @media screen and (max-width: 767px) {
