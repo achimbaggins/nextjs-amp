@@ -27,6 +27,11 @@ class MyDocument extends Document {
             custom-element="amp-form"
             src="https://cdn.ampproject.org/v0/amp-form-0.1.js"
           ></script>
+          <script
+            custom-element="amp-fit-text"
+            src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"
+            async
+          ></script>
         </Head>
         <body>
           <Main />

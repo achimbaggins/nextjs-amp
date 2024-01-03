@@ -18,10 +18,20 @@ export default function Search({ value, action }) {
         {`
           .search-form {
             max-width: 65%;
-            margin: auto;
+            margin: 0px auto;
             display: flex;
             padding: 20px 0px;
           }
+
+          @media screen and (max-width: 767px) {
+            .search-form {
+              max-width: 90%;
+              margin: auto;
+              display: flex;
+              padding: 20px 0px;
+            }
+          }
+
           .search-field {
             padding: 10px 15px;
             margin: auto;

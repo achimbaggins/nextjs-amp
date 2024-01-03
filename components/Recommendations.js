@@ -18,10 +18,10 @@ export default function Recommendations({ posts }) {
             <Link href="/post/[slug]" as={`/post/${val.slug}`} key={index}>
               <div className="item-post">
                 <amp-img
-                  width="150"
-                  height="150"
+                  width="250"
+                  height="140"
                   layout="responsive"
-                  alt="Apple"
+                  alt={val.title.rendered}
                   className="item-img"
                   src={val.cover}
                 ></amp-img>

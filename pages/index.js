@@ -5,18 +5,18 @@ import Recommendations from "@/components/Recommendations";
 import Head from "next/head";
 import Search from "@/components/Search";
 import Pagination from "@/components/Pagination";
+import { useRouter } from "next/router";
 const inter = Inter({ subsets: ["latin"] });
 export const config = { amp: true };
 
 function Home({ posts, categories, search, totalPages, lastPosts }) {
+  const router = useRouter();
   return (
     <>
       <Head>
         <title>Home | Private Blog Network</title>
-        <meta
-          name="description"
-          content="Penulis: A.N. Penulis, Ilustrator: V. Gogh, Harga: $17,99, Isi: 784 halaman"
-        />
+        <meta name="description" content="Private blog adalah bagian da" />
+        <link rel="canonical" href={router.pathname}></link>
       </Head>
       <Layout categories={categories}>
         <Search value={search} action={"/"} />
@@ -73,7 +73,7 @@ Home.getInitialProps = async (context) => {
   const customePosts = posts.map((val) => {
     val.cover = val._embedded["wp:featuredmedia"]
       ? val._embedded["wp:featuredmedia"][0]["media_details"]["sizes"][
-          "medium"
+          "thumbnail"
         ]?.["source_url"]
       : "https://d12v9rtnomnebu.cloudfront.net/oursite/logo_white.png";
     return val;
@@ -82,7 +82,7 @@ Home.getInitialProps = async (context) => {
   const customResLastPosts = lastPosts.map((val) => {
     val.cover = val._embedded["wp:featuredmedia"]
       ? val._embedded["wp:featuredmedia"][0]["media_details"]["sizes"][
-          "medium"
+          "thumbnail"
         ]?.["source_url"]
       : "https://d12v9rtnomnebu.cloudfront.net/oursite/logo_white.png";
     return val;

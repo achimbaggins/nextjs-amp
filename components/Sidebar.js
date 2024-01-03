@@ -1,6 +1,7 @@
+import { formattedDate } from "@/utils/formatter";
 import Link from "next/link";
 import { useRouter } from "next/router";
-const Sidebar = ({ categories }) => {
+const Sidebar = ({ categories, posts }) => {
   const router = useRouter();
 
   return (
@@ -18,7 +19,9 @@ const Sidebar = ({ categories }) => {
           <ul className="menu">
             <li>
               <div className="sidebar-header">
-                <h2>Private Blog Network</h2>
+                <Link href={"/"}>
+                  <h2>Private Blog Network</h2>
+                </Link>
                 <div className="side-border" />
               </div>
               <div style={{ display: "flex", marginBottom: 20 }}>
@@ -26,32 +29,46 @@ const Sidebar = ({ categories }) => {
                 <button className="btn-default">Masuk</button>
               </div>
             </li>
-            <li>
-              <h2 className="menu-cat">Categories</h2>
-              <ul
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  flexDirection: "column",
-                  justifyContent: "start",
-                }}
-              >
-                {categories.map?.((cat, index) => {
-                  return (
-                    <li key={index}>
-                      <Link
-                        href={`/categories/${cat.slug}/${cat.id}`}
-                        className={
-                          router.query.name === cat.slug ? "active" : ""
-                        }
-                      >
-                        {cat?.name}
+            {posts ? (
+              <li>
+                <h2 className="submenu-header">Berita Terbaru</h2>
+                <ul className="sub-menu">
+                  {posts.map((val, key) => {
+                    return (
+                      <Link key={key} href={`/post/${val.slug}`}>
+                        <div className="item">
+                          <h2 className="item-title">{val.title.rendered}</h2>
+                          <p style={{ color: "orange" }}>Selengkapnya...</p>
+                        </div>
                       </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </li>
+                    );
+                  })}
+                  <li className="item-more">
+                    <Link href={"/"}>Berita Lainnya &rarr;</Link>
+                  </li>
+                </ul>
+              </li>
+            ) : (
+              <li>
+                <h2 className="submenu-header">Kategori</h2>
+                <ul className="sub-menu">
+                  {categories.map?.((cat, index) => {
+                    return (
+                      <li key={index}>
+                        <Link
+                          href={`/categories/${cat.slug}/${cat.id}`}
+                          className={
+                            router.query.name === cat.slug ? "active" : ""
+                          }
+                        >
+                          {cat?.name}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            )}
           </ul>
         </nav>
       </amp-sidebar>
@@ -94,12 +111,48 @@ const Sidebar = ({ categories }) => {
             background-color: #04aa6d;
           }
 
+          .sub-menu {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: start;
+          }
+
+          .sub-menu .item {
+            margin-bottom: 5px;
+            background-color: white;
+            border: 1px solid #f5f5f5;
+            padding: 5px;
+            border-radius: 5px;
+          }
+
+          .item-more {
+            text-decoration: none;
+            font-size: 1.2rem;
+            text-align: center;
+          }
+
+          .item .item-title {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            font-size: 1.2rem;
+            margin: 0;
+          }
+
+          .item p {
+            font-size: 1rem;
+            margin: 0;
+            color: gray;
+          }
+
           button {
             margin-right: 10px;
             border-radius: 10px;
           }
 
-          button:last-child,
           button:last-child {
             margin-right: 0px;
           }
@@ -139,10 +192,15 @@ const Sidebar = ({ categories }) => {
             margin: 0;
           }
 
-          ul li .menu-cat {
+          ul li .submenu-header {
             margin: 0px;
             padding: 0px;
             font-size: 2.5rem;
+            margin-bottom: 1.8rem;
+          }
+
+          a {
+            text-decoration: none;
           }
 
           a .active {

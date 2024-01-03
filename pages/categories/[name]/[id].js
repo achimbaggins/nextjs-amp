@@ -16,6 +16,7 @@ function Home({ posts, categories, search, totalPages, lastPosts }) {
     <>
       <Head>
         <title>All Categories</title>
+        <link rel="canonical" href={router.asPath} />
       </Head>
       <Layout categories={categories}>
         <Search
