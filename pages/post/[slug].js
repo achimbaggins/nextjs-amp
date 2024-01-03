@@ -19,7 +19,6 @@ function Home({ post, categories, lastPosts }) {
       </Head>
       <Layout categories={categories} posts={lastPosts}>
         <div className={`${inter.className} content `}>
-          <Link></Link>
           <h1>{post.title.rendered}</h1>
           <p
             dangerouslySetInnerHTML={{
