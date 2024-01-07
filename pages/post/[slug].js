@@ -87,17 +87,13 @@ Home.getInitialProps = async (context) => {
     const value = Math.floor(Math.random() * 10);
     return value;
   };
-  const res = await fetch(
-    `https://kampung-media.com/wp-json/wp/v2/posts?slug=${context.query.slug}`
-  );
+  const res = await fetch(`${baseUrl}/posts?slug=${context.query.slug}`);
 
   const resLastPosts = await fetch(
-    `https://kampung-media.com/wp-json/wp/v2/posts?_embed&page=${1}&per_page=${5}`
+    `${baseUrl}/posts?_embed&page=${1}&per_page=${5}`
   );
 
-  const resCat = await fetch(
-    `https://kampung-media.com/wp-json/wp/v2/categories`
-  );
+  const resCat = await fetch(`${baseUrl}/categories`);
 
   const categories = await resCat.json();
   const post = await res.json();

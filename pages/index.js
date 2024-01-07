@@ -51,17 +51,13 @@ Home.getInitialProps = async (context) => {
     ? `&page=${context.query.page}&per_page=${10}`
     : `&page=${1}&per_page=${10}`;
 
-  const res = await fetch(
-    `https://kampung-media.com/wp-json/wp/v2/posts?_embed&${searchParam}${pageParam}`
-  );
+  const res = await fetch(`${baseUrl}/posts?_embed&${searchParam}${pageParam}`);
 
   const resLastPosts = await fetch(
-    `https://kampung-media.com/wp-json/wp/v2/posts?_embed&page=${1}&per_page=${10}`
+    `${baseUrl}/posts?_embed&page=${1}&per_page=${10}`
   );
 
-  const resCat = await fetch(
-    `https://kampung-media.com/wp-json/wp/v2/categories`
-  );
+  const resCat = await fetch(`${baseUrl}/categories`);
   const categories = await resCat.json();
   const posts = await res.json();
   const lastPosts = await resLastPosts.json();
