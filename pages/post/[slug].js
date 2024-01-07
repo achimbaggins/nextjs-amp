@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 export const config = { amp: true };
-function Home({ post, categories, lastPosts }) {
+function Home({ post, categories, lastPosts, urlRandom }) {
   const router = useRouter();
 
   return (
@@ -16,7 +16,7 @@ function Home({ post, categories, lastPosts }) {
         <meta property="og:title" content={post.title.rendered} key="title" />
         <link rel="canonical" href={router.asPath} />
       </Head>
-      <Layout categories={categories} posts={lastPosts}>
+      <Layout categories={categories} posts={lastPosts} urlRandom={urlRandom}>
         <div className={`${inter.className} content-detail `}>
           <ul className="breadcrumb">
             <li>
@@ -83,6 +83,10 @@ function Home({ post, categories, lastPosts }) {
 }
 
 Home.getInitialProps = async (context) => {
+  const urlRandom = () => {
+    const value = Math.floor(Math.random() * 10);
+    return value;
+  };
   const res = await fetch(
     `https://kampung-media.com/wp-json/wp/v2/posts?slug=${context.query.slug}`
   );
@@ -117,7 +121,12 @@ Home.getInitialProps = async (context) => {
     return val;
   });
 
-  return { post: post[0], categories: customeCat, lastPosts: lastPosts };
+  return {
+    post: post[0],
+    categories: customeCat,
+    lastPosts: lastPosts,
+    urlRandom,
+  };
 };
 
 export default Home;

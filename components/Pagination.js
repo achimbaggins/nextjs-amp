@@ -17,14 +17,16 @@ export default function Pagination({ totalPages }) {
     <>
       <div className="container-pagination">
         <div className="pagination">
-          <Link
-            href={{
-              href: router.asPath,
-              query: { page: startPage - ITEMS_PER_PAGE },
-            }}
-          >
-            &laquo;
-          </Link>
+          {page > 1 && (
+            <Link
+              href={{
+                href: router.asPath,
+                query: { page: startPage - ITEMS_PER_PAGE },
+              }}
+            >
+              &laquo;
+            </Link>
+          )}
           {Array.from({ length: ITEMS_PER_PAGE }, (_, index) => {
             const pageNumber = startPage + index;
             const isActive = pageNumber === currentPage;

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-const Sidebar = ({ categories, posts }) => {
+const Sidebar = ({ categories, posts, urlRandom }) => {
   const router = useRouter();
+  const url = urlRandom() > 5 ? "https://google.com" : "https://facebook.com";
 
   return (
     <>
@@ -24,8 +25,18 @@ const Sidebar = ({ categories, posts }) => {
                 <div className="side-border" />
               </div>
               <div style={{ display: "flex", marginBottom: 20 }}>
-                <button className="btn-outline">Daftar</button>
-                <button className="btn-default">Masuk</button>
+                <button
+                  className="btn-outline"
+                  on={`tap:AMP.navigateTo(url="${url}", taget=_blank)`}
+                >
+                  Daftar
+                </button>
+                <button
+                  className="btn-default"
+                  on={`tap:AMP.navigateTo(url="${url}", taget=_blank)`}
+                >
+                  Masuk
+                </button>
               </div>
             </li>
             {posts ? (

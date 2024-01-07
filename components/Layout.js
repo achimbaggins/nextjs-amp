@@ -5,7 +5,11 @@ const Layout = (props) => {
   return (
     <div className="site-wrapper">
       <Navbar />
-      <Sidebar categories={props.categories} posts={props.posts} />
+      <Sidebar
+        categories={props.categories}
+        posts={props.posts}
+        urlRandom={props.urlRandom}
+      />
       <div className="content-wrapper">{props.children}</div>
 
       <style jsx global>{`

@@ -8,7 +8,7 @@ import Pagination from "@/components/Pagination";
 import Empty from "@/components/Empty";
 
 export const config = { amp: true };
-function Home({ posts, categories, search, totalPages, lastPosts }) {
+function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
   const router = useRouter();
   return (
     <>
@@ -16,7 +16,7 @@ function Home({ posts, categories, search, totalPages, lastPosts }) {
         <title>All Categories</title>
         <link rel="canonical" href={router.asPath} />
       </Head>
-      <Layout categories={categories}>
+      <Layout categories={categories} urlRandom={urlRandom}>
         <Search
           value={search}
           action={`/categories/${router.query.name}/${router.query.id}`}
@@ -40,6 +40,11 @@ function Home({ posts, categories, search, totalPages, lastPosts }) {
 }
 
 Home.getInitialProps = async (context) => {
+  const urlRandom = () => {
+    const value = Math.floor(Math.random() * 10);
+    return value;
+  };
+
   const searchParam = context.query.search
     ? `&search=${encodeURIComponent(context.query.search)}`
     : "";
@@ -99,6 +104,7 @@ Home.getInitialProps = async (context) => {
     lastPosts: customResLastPosts,
     categories: customeCat,
     search: context.query?.search ?? "",
+    urlRandom,
   };
 };
 
