@@ -190,6 +190,7 @@ const Sidebar = ({ categories, posts, urlRandom }) => {
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
+            cursor: pointer;
           }
 
           .btn-default {
@@ -202,6 +203,7 @@ const Sidebar = ({ categories, posts, urlRandom }) => {
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
+            cursor: pointer;
           }
 
           ul {
