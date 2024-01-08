@@ -26,7 +26,8 @@ const Post = ({ post }) => {
           dangerouslySetInnerHTML={{
             __html: post?.excerpt?.rendered,
           }}
-        ></p>
+        />
+        {/* <p>{post?.excerpt?}</p> */}
         <Link href="/post/[slug]" as={`/post/${post.slug}`}>
           <div className="readmore">Selengkapnya &rarr;</div>
         </Link>

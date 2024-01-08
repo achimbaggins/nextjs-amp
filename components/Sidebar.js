@@ -48,7 +48,6 @@ const Sidebar = ({ categories, posts, urlRandom }) => {
                       <Link key={key} href={`/post/${val.slug}`}>
                         <div className="item">
                           <h2 className="item-title">{val.title.rendered}</h2>
-                          <p style={{ color: "orange" }}>Selengkapnya...</p>
                         </div>
                       </Link>
                     );
@@ -132,6 +131,7 @@ const Sidebar = ({ categories, posts, urlRandom }) => {
             height: 2px;
             border-radius: 20px;
             background-color: #04aa6d;
+            margin-top: 10px;
           }
 
           .sub-menu {
@@ -144,8 +144,8 @@ const Sidebar = ({ categories, posts, urlRandom }) => {
           .sub-menu .item {
             margin-bottom: 5px;
             background-color: white;
-            border: 1px solid #f5f5f5;
-            padding: 5px;
+            border: 1px solid #f2f2f2;
+            padding: 10px;
             border-radius: 5px;
           }
 

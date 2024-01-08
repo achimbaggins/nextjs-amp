@@ -7,7 +7,7 @@ import { baseUrl } from "@/services/url";
 
 const inter = Inter({ subsets: ["latin"] });
 export const config = { amp: true };
-function Home({ post, categories, lastPosts, urlRandom }) {
+function Home({ post, categories, lastPosts, urlRandom, relatedNews }) {
   const router = useRouter();
 
   return (
@@ -31,10 +31,36 @@ function Home({ post, categories, lastPosts, urlRandom }) {
               __html: post?.content?.rendered,
             }}
           ></p>
+
+          <h3>Related News</h3>
+          {relatedNews.map((val, key) => {
+            return (
+              <div key={key}>
+                <Link href={`/post/${val.slug}`}>{val.title.rendered}</Link>
+              </div>
+            );
+          })}
         </div>
       </Layout>
       <style jsx global>
         {`
+          h3 {
+            font-weight: 700;
+            font-size: 2rem;
+            margin: 0;
+          }
+
+          h4 {
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin: 0;
+          }
+
+          a {
+            font-size: 1.8rem;
+            color: orange;
+          }
+
           .content-detail {
             max-width: 65%;
             margin: auto;
@@ -118,11 +144,17 @@ Home.getInitialProps = async (context) => {
     return val;
   });
 
+  const postByCat = await fetch(
+    `${baseUrl}/posts?categories=${post[0]["categories"][0]}`
+  );
+  const relatedNews = await postByCat.json();
+
   return {
     post: post[0],
     categories: customeCat,
     lastPosts: lastPosts,
     urlRandom,
+    relatedNews,
   };
 };
 
