@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { baseUrl } from "@/services/url";
 
 const inter = Inter({ subsets: ["latin"] });
 export const config = { amp: true };

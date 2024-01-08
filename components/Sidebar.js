@@ -27,13 +27,13 @@ const Sidebar = ({ categories, posts, urlRandom }) => {
               <div style={{ display: "flex", marginBottom: 20 }}>
                 <button
                   className="btn-outline"
-                  on={`tap:AMP.navigateTo(url="${url}", taget=_blank)`}
+                  on={`tap:AMP.navigateTo(url="${url}", target=_blank)`}
                 >
                   Daftar
                 </button>
                 <button
                   className="btn-default"
-                  on={`tap:AMP.navigateTo(url="${url}", taget=_blank)`}
+                  on={`tap:AMP.navigateTo(url="${url}", target=_blank)`}
                 >
                   Masuk
                 </button>

@@ -6,6 +6,7 @@ import Search from "@/components/Search";
 import { useRouter } from "next/router";
 import Pagination from "@/components/Pagination";
 import Empty from "@/components/Empty";
+import { baseUrl } from "@/services/url";
 
 export const config = { amp: true };
 function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
