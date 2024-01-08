@@ -62,7 +62,7 @@ Home.getInitialProps = async (context) => {
     `${baseUrl}/posts?_embed&page=${1}&per_page=${10}`
   );
 
-  const resCat = await fetch(`${baseUrl}/v2/categories`);
+  const resCat = await fetch(`${baseUrl}/categories`);
   const categories = await resCat.json();
   const posts = await res.json();
   const lastPosts = await resLastPosts.json();
