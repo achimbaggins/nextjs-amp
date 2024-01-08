@@ -44,7 +44,7 @@ const Layout = (props) => {
 
         h1 {
           font-weight: 700;
-          margin: 0 0 30px;
+          margin: 0 0 0px;
           font-size: 3.2rem;
         }
 

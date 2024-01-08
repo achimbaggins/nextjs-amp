@@ -14,12 +14,17 @@ const Post = ({ post }) => {
         />
       </div>
       <div style={{ flex: 1 }}>
-        <h2
-          className="post-header"
-          dangerouslySetInnerHTML={{
-            __html: post?.title?.rendered,
-          }}
-        />
+        <Link href="/post/[slug]" as={`/post/${post.slug}`}>
+          <h1
+            dangerouslySetInnerHTML={{
+              __html: post?.title?.rendered,
+            }}
+          />
+        </Link>
+
+        <div style={{ color: "black" }}>
+          Category - {post?._embedded?.["wp:term"][0][0]["name"]}
+        </div>
 
         <p
           className="content"
@@ -34,6 +39,14 @@ const Post = ({ post }) => {
       </div>
       <style jsx global>
         {`
+          h1 {
+            margin: 0;
+          }
+
+          a {
+            margin: 0;
+          }
+
           .post {
             margin: auto;
             display: flex;

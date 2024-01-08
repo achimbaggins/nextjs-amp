@@ -25,7 +25,11 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews }) {
             </li>
             <li>{post.slug}</li>
           </ul>
-          <h1>{post.title.rendered}</h1>
+          <h1
+            dangerouslySetInnerHTML={{
+              __html: post?.title?.rendered,
+            }}
+          />
           <p
             dangerouslySetInnerHTML={{
               __html: post?.content?.rendered,
