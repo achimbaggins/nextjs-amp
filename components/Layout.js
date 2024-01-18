@@ -50,13 +50,15 @@ const Layout = (props) => {
 
         .site-wrapper {
           display: flex;
+          overflow-y: scroll;
         }
 
         .content-wrapper {
           flex: 1;
           max-height: 100vh;
-          overflow-y: scroll;
+          position: relative;
           margin: 0 auto;
+          max-width: 65%;
         }
 
         @media screen and (max-width: 767px) {

@@ -15,7 +15,7 @@ const Post = ({ post }) => {
       </div>
       <div style={{ flex: 1 }}>
         <Link href="/post/[slug]" as={`/post/${post.slug}`}>
-          <h1
+          <h2
             dangerouslySetInnerHTML={{
               __html: post?.title?.rendered,
             }}
@@ -39,10 +39,6 @@ const Post = ({ post }) => {
       </div>
       <style jsx global>
         {`
-          h1 {
-            margin: 0;
-          }
-
           a {
             margin: 0;
           }
@@ -55,10 +51,6 @@ const Post = ({ post }) => {
             font-size: 1.5rem;
           }
 
-          .post-header {
-            margin: 0;
-          }
-
           .post-img {
             position: relative;
             width: 100%;
@@ -69,59 +61,10 @@ const Post = ({ post }) => {
             object-fit: cover;
           }
 
-          .post p {
-            margin: 0;
-          }
-
-          @media screen and (min-width: 1025px) {
-            .post {
-              max-width: 65%;
-            }
-            .post-img {
-              height: 200px;
-              width: 35%;
-            }
-          }
-
-          @media screen and (max-width: 1024px) {
-            .post {
-              max-width: 65%;
-              display: flex;
-              flex-direction: column;
-            }
-
-            .post-img {
-              height: 200px;
-              width: 100%;
-            }
-
-            .post h2 {
-              font-size: 1.8rem;
-              margin-top: 10px;
-            }
-
-            p {
-              margin: 0;
-              font-size: 1.3rem;
-            }
-          }
-
-          @media screen and (max-width: 425px) {
-            .post {
-              max-width: 90%;
-              display: flex;
-              flex-direction: column;
-            }
-
-            .post-img {
-              height: 200px;
-              width: 100%;
-            }
-          }
-
           .post h2 {
-            text-transform: capitalize;
+            font-size: 1.8rem;
           }
+
           .avatar {
             float: left;
             width: 35px;
@@ -142,6 +85,7 @@ const Post = ({ post }) => {
             padding: 2px 6px;
             border-radius: 3px;
           }
+
           .category a:hover {
             background: #ddd;
           }
@@ -149,10 +93,60 @@ const Post = ({ post }) => {
             font-size: 1.2rem;
             color: orange;
           }
+
+          .post p {
+            margin: 0;
+          }
+
+          @media screen and (min-width: 1025px) {
+            .post-img {
+              height: 200px;
+              width: 35%;
+            }
+          }
+
           @media screen and (max-width: 1024px) {
+            .post {
+              display: flex;
+              flex-direction: row;
+            }
+
             .post p {
               margin: 0;
               font-size: 1.3rem;
+            }
+
+            .post-img {
+              width: 200px;
+              max-height: 200px;
+            }
+          }
+
+          @media screen and (max-width: 768px) {
+            .post {
+              display: flex;
+              flex-direction: column;
+            }
+
+            .post h2 {
+              margin-top: 10px;
+            }
+
+            .post-img {
+              height: 200px;
+              width: 100%;
+            }
+          }
+
+          @media screen and (max-width: 425px) {
+            .post {
+              display: flex;
+              flex-direction: column;
+            }
+
+            .post-img {
+              height: 200px;
+              width: 100%;
             }
           }
         `}

@@ -34,11 +34,9 @@ export default function Recommendations({ posts }) {
           );
         })}
       </amp-carousel>
-      <style jsx>
+      <style jsx global>
         {`
           .recommendations {
-            max-width: 65%;
-            margin: auto;
             margin-bottom: 20px;
           }
 
@@ -86,7 +84,7 @@ export default function Recommendations({ posts }) {
 
           @media screen and (max-width: 767px) {
             .recommendations {
-              max-width: 90%;
+              // max-width: 90%;
             }
           }
         `}

@@ -4,10 +4,11 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { baseUrl } from "@/services/url";
+import LayoutCleanSide from "@/components/LayoutCleanSide";
 
 const inter = Inter({ subsets: ["latin"] });
 export const config = { amp: true };
-function Home({ post, categories, lastPosts, urlRandom, relatedNews }) {
+function Home({ post, categories, lastPosts, urlRandom, relatedNews, search }) {
   const router = useRouter();
 
   return (
@@ -17,7 +18,14 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews }) {
         <meta property="og:title" content={post.title.rendered} key="title" />
         <link rel="canonical" href={router.asPath} />
       </Head>
-      <Layout categories={categories} posts={lastPosts} urlRandom={urlRandom}>
+
+      <LayoutCleanSide
+        categories={categories}
+        posts={lastPosts}
+        urlRandom={urlRandom}
+        search={search}
+        withoutSearch
+      >
         <div className={`${inter.className} content-detail `}>
           <ul className="breadcrumb">
             <li>
@@ -45,7 +53,7 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews }) {
             );
           })}
         </div>
-      </Layout>
+      </LayoutCleanSide>
       <style jsx global>
         {`
           h3 {
@@ -66,9 +74,7 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews }) {
           }
 
           .content-detail {
-            max-width: 65%;
             margin: auto;
-            padding: 30px 0px;
           }
 
           .content-detail p {
@@ -82,7 +88,7 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews }) {
           }
 
           ul.breadcrumb {
-            padding: 10px 0;
+            // padding: 10px 0;
             list-style: none;
             margin: 0;
           }
@@ -159,6 +165,7 @@ Home.getInitialProps = async (context) => {
     lastPosts: lastPosts,
     urlRandom,
     relatedNews,
+    search: context.query?.search ?? "",
   };
 };
 

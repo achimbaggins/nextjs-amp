@@ -16,24 +16,22 @@ export default function Search({ value, action }) {
       </form>
       <style jsx>
         {`
+          form {
+            margin: 0;
+          }
           .search-form {
-            max-width: 65%;
-            margin: 0px auto;
             display: flex;
-            padding: 20px 0px;
           }
 
           @media screen and (max-width: 767px) {
             .search-form {
-              max-width: 90%;
               margin: auto;
               display: flex;
-              padding: 20px 0px;
             }
           }
 
           .search-field {
-            padding: 10px 15px;
+            padding: 5px 15px;
             margin: auto;
             font-size: 1.2rem;
             line-height: 1.5em;
@@ -53,14 +51,14 @@ export default function Search({ value, action }) {
           .search-submit {
             background-color: #1a1a1a;
             color: #ffffff;
-            font-weight: 700;
+            font-weight: 400;
             text-decoration: none;
             white-space: normal;
             -webkit-transition: none;
             transition: none;
             cursor: pointer;
             outline: 0;
-            padding: 10px;
+            padding: 5px 10px;
             font-size: 1rem;
             line-height: 1.25rem;
             border-radius: 6px;
