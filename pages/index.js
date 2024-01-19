@@ -6,19 +6,15 @@ import { useRouter } from "next/router";
 import Empty from "@/components/Empty";
 import { baseUrl } from "@/services/url";
 import Layout from "@/components/Layout";
+import LayoutDefault from "@/components/LayoutDefault";
 
 export const config = { amp: true };
 function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
   const router = useRouter();
 
-  return (
-    <>
-      <Head>
-        <title>Home | Private Blog Network</title>
-        <meta name="description" content="Private blog adalah bagian da" />
-        <link rel="canonical" href={router.pathname}></link>
-      </Head>
-      <Layout categories={categories} urlRandom={urlRandom} search={search}>
+  function renderContent() {
+    return (
+      <>
         {posts.length > 0 ? (
           <>
             <Recommendations posts={lastPosts} />
@@ -32,6 +28,19 @@ function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
           <Empty />
         )}
         <Pagination totalPages={totalPages} />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Head>
+        <title>Home | Private Blog Network</title>
+        <meta name="description" content="Private blog adalah bagian da" />
+        <link rel="canonical" href={router.pathname}></link>
+      </Head>
+      <Layout categories={categories} urlRandom={urlRandom} search={search}>
+        {renderContent()}
       </Layout>
     </>
   );

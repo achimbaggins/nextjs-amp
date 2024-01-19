@@ -3,14 +3,16 @@ import Sidebar from "./Sidebar";
 import Search from "./Search";
 import { useRouter } from "next/router";
 
-const LayoutCleanSide = (props) => {
+const LayoutDefault = (props) => {
   const url =
     props.urlRandom() > 5 ? "https://google.com" : "https://facebook.com";
+
   const router = useRouter();
   const params = new URLSearchParams(router.query);
   params.delete("name");
   params.delete("id");
   params.delete("page");
+  params.append("search", router.query?.search);
 
   return (
     <>
@@ -74,11 +76,11 @@ const LayoutCleanSide = (props) => {
           padding: 0;
           font-weight: 400;
           line-height: 1.8;
+          background: #f5f5f5;
           color: #7a7a7a;
           font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI",
             "Fira Sans", Avenir, "Helvetica Neue", "Lucida Grande", sans-serif;
           text-rendering: optimizeLegibility;
-          background-color: #ffffff;
         }
 
         h1,
@@ -105,13 +107,11 @@ const LayoutCleanSide = (props) => {
           padding-top: 20px;
         }
 
-        .sidebar-wrapper {
-          padding-top: 20px;
-        }
-
         .post-wrapper {
+          background-color: #ffffff;
           padding: 0px 20px;
           padding-top: 20px;
+          box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
           border-radius: 5px;
         }
 
@@ -175,12 +175,6 @@ const LayoutCleanSide = (props) => {
           display: none;
           padding: 0px;
           font-size: 20px;
-        }
-
-        .grid-view {
-          display: grid;
-          grid-template-columns: auto auto;
-          grid-gap: 10px;
         }
 
         //responsive layout
@@ -252,15 +246,10 @@ const LayoutCleanSide = (props) => {
           .btn-group.hide {
             display: none;
           }
-
-          .grid-view {
-            display: grid;
-            grid-template-columns: auto;
-          }
         }
       `}</style>
     </>
   );
 };
 
-export default LayoutCleanSide;
+export default LayoutDefault;

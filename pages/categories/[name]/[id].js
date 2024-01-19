@@ -10,12 +10,14 @@ import Layout from "@/components/Layout";
 export const config = { amp: true };
 function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
   const router = useRouter();
+
   return (
     <>
       <Head>
         <title>All Categories</title>
         <link rel="canonical" href={router.asPath} />
       </Head>
+
       <Layout categories={categories} urlRandom={urlRandom} search={search}>
         {posts.length > 0 ? (
           <>

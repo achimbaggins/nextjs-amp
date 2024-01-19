@@ -1,17 +1,18 @@
 import Sidebar from "./Sidebar";
-import Navbar from "./Navbar";
 import Search from "./Search";
 
-const LayoutDetail = (props) => {
+const LayoutFirst = (props) => {
   const url =
     props.urlRandom() > 5 ? "https://google.com" : "https://facebook.com";
+
+  console.log(props.search);
   return (
     <>
       <header className="navbar">
         <button on="tap:sidebar.toggle" className={"sidebar-trigger"}>
           ☰
         </button>
-        <Search action={"/"} />
+        <Search action={"/"} value={props.search} />
       </header>
       <div className="site-content">
         <div className="site-wrapper">
@@ -129,7 +130,7 @@ const LayoutDetail = (props) => {
           display: none;
         }
 
-        //responsive LayoutDetail
+        //responsive LayoutFirst
         @media screen and (min-width: 1025px) {
           .site-wrapper {
             margin: 0 auto;
@@ -191,4 +192,4 @@ const LayoutDetail = (props) => {
   );
 };
 
-export default LayoutDetail;
+export default LayoutFirst;

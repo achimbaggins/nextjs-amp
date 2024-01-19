@@ -1,9 +1,19 @@
+import { useRouter } from "next/router";
 import React from "react";
 
 export default function Search({ value, action }) {
+  const router = useRouter();
+  const params = new URLSearchParams(router.query);
+  params.delete("page");
+
   return (
     <>
-      <form className="search-form" method="GET" action={action} target="_top">
+      <form
+        className="search-form"
+        method="get"
+        action={`${action}`}
+        target="_top"
+      >
         <input
           type="search"
           placeholder="Search..."

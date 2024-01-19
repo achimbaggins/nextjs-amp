@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Search from "./Search";
 const Sidebar = ({ categories, posts, urlRandom, isHeader = false }) => {
   const router = useRouter();
   const url = urlRandom() > 5 ? "https://google.com" : "https://facebook.com";
+
+  const params = new URLSearchParams(router.query);
+  params.delete("search");
+  params.delete("page");
 
   return (
     <>
@@ -67,7 +70,9 @@ const Sidebar = ({ categories, posts, urlRandom, isHeader = false }) => {
                     return (
                       <li key={index}>
                         <Link
-                          href={`/categories/${cat.slug}/${cat.id}`}
+                          href={`/categories/${cat.slug}/${
+                            cat.id
+                          }?${params.toString()}`}
                           className={
                             router.query.name === cat.slug ? "active" : ""
                           }
