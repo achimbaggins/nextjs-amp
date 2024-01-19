@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Search from "./Search";
-const Sidebar = ({ categories, posts, urlRandom, isHeader = true }) => {
+const Sidebar = ({ categories, posts, urlRandom, isHeader = false }) => {
   const router = useRouter();
   const url = urlRandom() > 5 ? "https://google.com" : "https://facebook.com";
 
@@ -18,7 +18,7 @@ const Sidebar = ({ categories, posts, urlRandom, isHeader = true }) => {
         </button>
         <nav toolbar="(min-width: 767px)" toolbar-target="desktop-sidebar">
           <ul className="menu">
-            <li className="menu-header">
+            <li className={`menu-header ${!isHeader && "hide"}`}>
               <div>
                 <Link href={"/"}>
                   <h2>Private Blog Network</h2>
@@ -27,13 +27,13 @@ const Sidebar = ({ categories, posts, urlRandom, isHeader = true }) => {
               </div>
               <div style={{ display: "flex", marginBottom: 20, marginTop: 20 }}>
                 <button
-                  className="btn-outline"
+                  className="btn btn-outline"
                   on={`tap:AMP.navigateTo(url="${url}", target=_blank)`}
                 >
                   Daftar
                 </button>
                 <button
-                  className="btn-default"
+                  className="btn btn-default"
                   on={`tap:AMP.navigateTo(url="${url}", target=_blank)`}
                 >
                   Masuk
@@ -102,6 +102,11 @@ const Sidebar = ({ categories, posts, urlRandom, isHeader = true }) => {
             font-size: 22px;
           }
 
+          #desktop-sidebar {
+            position: absolute;
+            max-width: 240px;
+          }
+
           #desktop-sidebar .menu {
             display: flex;
             flex-direction: column;
@@ -111,7 +116,7 @@ const Sidebar = ({ categories, posts, urlRandom, isHeader = true }) => {
             font-size: 2.5rem;
           }
 
-          .menu-header {
+          .menu-header.hide {
             display: none;
           }
 
@@ -175,36 +180,29 @@ const Sidebar = ({ categories, posts, urlRandom, isHeader = true }) => {
           button {
             margin-right: 10px;
             border-radius: 10px;
+            cursor: pointer;
           }
 
           button:last-child {
             margin-right: 0px;
           }
 
-          .btn-outline {
-            background-color: white;
-            border: 1px solid black;
-            color: black;
-            padding: 8px;
-            flex: 1;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            cursor: pointer;
+          .btn {
+            font-size: 1.2rem;
+            font-weight: 400;
+            padding: 8px 20px;
+            border-radius: 5px;
           }
 
           .btn-default {
-            background-color: black;
             border: 1px solid black;
+            background: black;
             color: white;
-            padding: 8px;
-            flex: 1;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            cursor: pointer;
+          }
+
+          .btn-outline {
+            border: 1px solid black;
+            color: black;
           }
 
           ul {
@@ -250,7 +248,7 @@ const Sidebar = ({ categories, posts, urlRandom, isHeader = true }) => {
             .sidebar {
               padding-top: 20px;
             }
-            .menu-header {
+            .menu-header.hide {
               display: block;
             }
           }

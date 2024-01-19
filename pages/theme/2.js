@@ -5,14 +5,13 @@ import Pagination from "@/components/Pagination";
 import { useRouter } from "next/router";
 import Empty from "@/components/Empty";
 import { baseUrl } from "@/services/url";
-import LayoutCleanSide from "@/components/LayoutCleanSide";
 import Gridpost from "@/components/GridPost";
+import LayoutFirst from "@/components/LayoutFirst";
 
 export const config = { amp: true };
 function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
   const router = useRouter();
 
-  console.log(search);
   return (
     <>
       <Head>
@@ -20,7 +19,7 @@ function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
         <meta name="description" content="Private blog adalah bagian da" />
         <link rel="canonical" href={router.pathname}></link>
       </Head>
-      <LayoutCleanSide
+      <LayoutFirst
         categories={categories}
         urlRandom={urlRandom}
         search={search}
@@ -38,7 +37,7 @@ function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
           <Empty />
         )}
         <Pagination totalPages={totalPages} />
-      </LayoutCleanSide>
+      </LayoutFirst>
     </>
   );
 }

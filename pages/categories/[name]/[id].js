@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Pagination from "@/components/Pagination";
 import Empty from "@/components/Empty";
 import { baseUrl } from "@/services/url";
-import LayoutCleanSide from "@/components/LayoutCleanSide";
+import Layout from "@/components/Layout";
 
 export const config = { amp: true };
 function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
@@ -16,11 +16,7 @@ function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
         <title>All Categories</title>
         <link rel="canonical" href={router.asPath} />
       </Head>
-      <LayoutCleanSide
-        categories={categories}
-        urlRandom={urlRandom}
-        search={search}
-      >
+      <Layout categories={categories} urlRandom={urlRandom} search={search}>
         {posts.length > 0 ? (
           <>
             <Recommendations posts={lastPosts} />
@@ -34,7 +30,7 @@ function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
         ) : (
           <Empty />
         )}
-      </LayoutCleanSide>
+      </Layout>
     </>
   );
 }

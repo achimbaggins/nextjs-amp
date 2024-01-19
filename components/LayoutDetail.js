@@ -2,7 +2,7 @@ import Link from "next/link";
 import Sidebar from "./Sidebar";
 import Search from "./Search";
 
-const Layout = (props) => {
+const LayoutDetail = (props) => {
   const url =
     props.urlRandom() > 5 ? "https://google.com" : "https://facebook.com";
   return (
@@ -67,11 +67,12 @@ const Layout = (props) => {
           padding: 0;
           font-weight: 400;
           line-height: 1.8;
-          background: #f5f5f5;
+          background: #f2f2f2;
           color: #7a7a7a;
           font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI",
             "Fira Sans", Avenir, "Helvetica Neue", "Lucida Grande", sans-serif;
           text-rendering: optimizeLegibility;
+          background-color: #ffffff;z
         }
 
         h1,
@@ -96,14 +97,17 @@ const Layout = (props) => {
           display: grid;
           grid-template-columns: 22% 78%;
           padding-top: 20px;
+          background-color: #ffffff;
+        }
+
+        .sidebar-wrapper{
+            padding-top:20px
         }
 
         .post-wrapper {
-          background-color: #ffffff;
           padding: 0px 20px;
           padding-top: 20px;
-          box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
-          border-radius: 5px;
+          border-left:1px solid #f3f3f3;
         }
 
         a {
@@ -168,7 +172,7 @@ const Layout = (props) => {
           font-size: 20px;
         }
 
-        //responsive layout
+        //responsive LayoutDetail
         @media screen and (min-width: 1025px) {
           .site-wrapper {
             max-width: 1024px;
@@ -237,10 +241,16 @@ const Layout = (props) => {
           .btn-group.hide {
             display: none;
           }
+
+          .post-wrapper {
+            padding: 0px 20px;
+            padding-top: 20px;
+            border-left:0;
+          }
         }
       `}</style>
     </>
   );
 };
 
-export default Layout;
+export default LayoutDetail;

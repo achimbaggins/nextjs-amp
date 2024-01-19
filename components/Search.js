@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import React from "react";
 
 export default function Search({ value, action }) {
@@ -21,6 +20,9 @@ export default function Search({ value, action }) {
           }
           .search-form {
             display: flex;
+            aligni-items: center;
+            border: 1px solid #141414;
+            border-radius: 5px;
           }
 
           @media screen and (max-width: 767px) {
@@ -38,18 +40,15 @@ export default function Search({ value, action }) {
             color: #373d41;
             background-color: #fff;
             background-clip: padding-box;
-            border: 1px solid #c5c5c7;
             border-radius: 6px;
             -webkit-box-shadow: none;
             box-shadow: none;
             flex-grow: 1;
-            border-right: none;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+            border: 0;
             outline: none;
           }
           .search-submit {
-            background-color: #1a1a1a;
+            background-color: #141414;
             color: #ffffff;
             font-weight: 400;
             text-decoration: none;
@@ -61,7 +60,6 @@ export default function Search({ value, action }) {
             padding: 5px 10px;
             font-size: 1rem;
             line-height: 1.25rem;
-            border-radius: 6px;
             border-width: 0;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;

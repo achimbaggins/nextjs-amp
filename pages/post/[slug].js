@@ -4,7 +4,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { baseUrl } from "@/services/url";
-import LayoutCleanSide from "@/components/LayoutCleanSide";
+import LayoutDetail from "@/components/LayoutDetail";
 
 const inter = Inter({ subsets: ["latin"] });
 export const config = { amp: true };
@@ -18,8 +18,7 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews, search }) {
         <meta property="og:title" content={post.title.rendered} key="title" />
         <link rel="canonical" href={router.asPath} />
       </Head>
-
-      <LayoutCleanSide
+      <LayoutDetail
         categories={categories}
         posts={lastPosts}
         urlRandom={urlRandom}
@@ -42,6 +41,7 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews, search }) {
             dangerouslySetInnerHTML={{
               __html: post?.content?.rendered,
             }}
+            className="content-body"
           ></p>
 
           <h3>Related News</h3>
@@ -53,9 +53,14 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews, search }) {
             );
           })}
         </div>
-      </LayoutCleanSide>
+      </LayoutDetail>
       <style jsx global>
         {`
+          h1 {
+            font-size: 1.9em;
+            margin-top: 10px;
+          }
+
           h3 {
             font-weight: 700;
             font-size: 2rem;
@@ -68,8 +73,8 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews, search }) {
             margin: 0;
           }
 
-          a {
-            font-size: 1.8rem;
+          .content-detail a {
+            font-size: 1.3rem;
             color: orange;
           }
 
@@ -78,7 +83,7 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews, search }) {
           }
 
           .content-detail p {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
           }
 
           @media screen and (max-width: 767px) {
@@ -88,7 +93,6 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews, search }) {
           }
 
           ul.breadcrumb {
-            // padding: 10px 0;
             list-style: none;
             margin: 0;
           }

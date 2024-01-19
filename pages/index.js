@@ -1,16 +1,16 @@
-import Layout from "../components/Layout";
-import Post from "../components/Post";
+import Post from "@/components/Post";
 import Recommendations from "@/components/Recommendations";
 import Head from "next/head";
-import Search from "@/components/Search";
 import Pagination from "@/components/Pagination";
 import { useRouter } from "next/router";
 import Empty from "@/components/Empty";
 import { baseUrl } from "@/services/url";
+import Layout from "@/components/Layout";
 
 export const config = { amp: true };
 function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
   const router = useRouter();
+
   return (
     <>
       <Head>
@@ -18,8 +18,7 @@ function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
         <meta name="description" content="Private blog adalah bagian da" />
         <link rel="canonical" href={router.pathname}></link>
       </Head>
-      <Layout categories={categories} urlRandom={urlRandom}>
-        <Search value={search} action={"/"} />
+      <Layout categories={categories} urlRandom={urlRandom} search={search}>
         {posts.length > 0 ? (
           <>
             <Recommendations posts={lastPosts} />
