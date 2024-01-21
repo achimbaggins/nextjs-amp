@@ -11,6 +11,8 @@ const Layout = (props) => {
     return <LayoutFirst {...props} />;
   } else if (theme === "2") {
     return <LayoutCleanSide {...props} />;
+  } else if (theme === "3") {
+    return <LayoutFirst {...props} />;
   } else {
     return <LayoutDefault {...props} />;
   }

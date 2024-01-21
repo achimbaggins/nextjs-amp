@@ -11,6 +11,7 @@ import LayoutDefault from "@/components/LayoutDefault";
 export const config = { amp: true };
 function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
   const router = useRouter();
+  const theme = router.query?.theme ?? "";
 
   function renderContent() {
     return (
@@ -18,7 +19,9 @@ function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
         {posts.length > 0 ? (
           <>
             <Recommendations posts={lastPosts} />
-            <div className="post-list">
+            <div
+              className={theme === 1 || theme === 2 ? "grid-view" : "post-list"}
+            >
               {posts.map((post) => (
                 <Post key={post.id} post={post} />
               ))}
