@@ -5,14 +5,13 @@ const LayoutFirst = (props) => {
   const url =
     props.urlRandom() > 5 ? "https://google.com" : "https://facebook.com";
 
-  console.log(props.search);
   return (
     <>
       <header className="navbar">
         <button on="tap:sidebar.toggle" className={"sidebar-trigger"}>
           ☰
         </button>
-        <Search action={"/"} value={props.search} />
+        <Search action={"/?theme=1"} value={props.search} />
       </header>
       <div className="site-content">
         <div className="site-wrapper">
@@ -31,7 +30,7 @@ const LayoutFirst = (props) => {
               <label style={{ fontSize: "1.8rem", color: "black" }}>
                 Search :{" "}
               </label>
-              <Search action={"/"} />
+              <Search action={"/"} value={props.search} />
             </div>
           </div>
         </div>

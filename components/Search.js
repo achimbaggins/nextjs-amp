@@ -1,27 +1,40 @@
 import { useRouter } from "next/router";
-import React from "react";
+import Script from "next/script";
+import React, { useState } from "react";
+
+export const config = { amp: false };
 
 export default function Search({ value, action }) {
   const router = useRouter();
   const params = new URLSearchParams(router.query);
   params.delete("page");
+  params.delete("search");
 
   return (
     <>
       <form
-        className="search-form"
         method="get"
+        className="search-form"
         action={`${action}`}
         target="_top"
+        id="myForm"
       >
         <input
+          type="text"
+          name="theme"
+          on="input-throttled:formData.name"
+          defaultValue={params.get("theme")}
+          hidden
+        />
+        <input
           type="search"
-          placeholder="Search..."
           name="search"
           className="search-field"
+          on="input-throttled:formData.search"
           defaultValue={value}
+          placeholder="Search..."
         />
-        <input type="submit" value="Search" className="search-submit" />
+        <input type="submit" value="Submit" className="search-submit" />
       </form>
       <style jsx>
         {`

@@ -12,7 +12,6 @@ export const config = { amp: true };
 function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
   const router = useRouter();
 
-  console.log(search);
   return (
     <>
       <Head>
