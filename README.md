@@ -15,5 +15,7 @@ bun dev
 ```
 # Note for Theme
 to use the theme, you just need to add query parameters to the url for example 
-# http://localhost:3000?theme=1/2
+```bash
+http://localhost:3000?theme=1/2
+```
 for default you don't need to do that
