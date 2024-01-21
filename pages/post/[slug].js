@@ -4,10 +4,11 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { baseUrl } from "@/services/url";
+import LayoutDetail from "@/components/LayoutDetail";
 
 const inter = Inter({ subsets: ["latin"] });
 export const config = { amp: true };
-function Home({ post, categories, lastPosts, urlRandom, relatedNews }) {
+function Home({ post, categories, lastPosts, urlRandom, relatedNews, search }) {
   const router = useRouter();
 
   return (
@@ -17,7 +18,13 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews }) {
         <meta property="og:title" content={post.title.rendered} key="title" />
         <link rel="canonical" href={router.asPath} />
       </Head>
-      <Layout categories={categories} posts={lastPosts} urlRandom={urlRandom}>
+      <LayoutDetail
+        categories={categories}
+        posts={lastPosts}
+        urlRandom={urlRandom}
+        search={search}
+        withoutSearch
+      >
         <div className={`${inter.className} content-detail `}>
           <ul className="breadcrumb">
             <li>
@@ -34,6 +41,7 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews }) {
             dangerouslySetInnerHTML={{
               __html: post?.content?.rendered,
             }}
+            className="content-body"
           ></p>
 
           <h3>Related News</h3>
@@ -45,9 +53,14 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews }) {
             );
           })}
         </div>
-      </Layout>
+      </LayoutDetail>
       <style jsx global>
         {`
+          h1 {
+            font-size: 1.9em;
+            margin-top: 10px;
+          }
+
           h3 {
             font-weight: 700;
             font-size: 2rem;
@@ -60,19 +73,17 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews }) {
             margin: 0;
           }
 
-          a {
-            font-size: 1.8rem;
+          .content-detail a {
+            font-size: 1.3rem;
             color: orange;
           }
 
           .content-detail {
-            max-width: 65%;
             margin: auto;
-            padding: 30px 0px;
           }
 
           .content-detail p {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
           }
 
           @media screen and (max-width: 767px) {
@@ -82,7 +93,6 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews }) {
           }
 
           ul.breadcrumb {
-            padding: 10px 0;
             list-style: none;
             margin: 0;
           }
@@ -159,6 +169,7 @@ Home.getInitialProps = async (context) => {
     lastPosts: lastPosts,
     urlRandom,
     relatedNews,
+    search: context.query?.search ?? "",
   };
 };
 

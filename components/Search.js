@@ -1,69 +1,88 @@
 import { useRouter } from "next/router";
-import React from "react";
+import Script from "next/script";
+import React, { useState } from "react";
+
+export const config = { amp: false };
 
 export default function Search({ value, action }) {
+  const router = useRouter();
+  const params = new URLSearchParams(router.query);
+  params.delete("page");
+  params.delete("search");
+
   return (
     <>
-      <form className="search-form" method="GET" action={action} target="_top">
+      <form
+        method="get"
+        className="search-form"
+        action={`${action}`}
+        target="_top"
+        id="myForm"
+      >
+        <input
+          type="text"
+          name="theme"
+          on="input-throttled:formData.name"
+          defaultValue={params.get("theme")}
+          hidden
+        />
         <input
           type="search"
-          placeholder="Search..."
           name="search"
           className="search-field"
+          on="input-throttled:formData.search"
           defaultValue={value}
+          placeholder="Search..."
         />
-        <input type="submit" value="Search" className="search-submit" />
+        <input type="submit" value="Submit" className="search-submit" />
       </form>
       <style jsx>
         {`
+          form {
+            margin: 0;
+          }
           .search-form {
-            max-width: 65%;
-            margin: 0px auto;
             display: flex;
-            padding: 20px 0px;
+            aligni-items: center;
+            border: 1px solid #141414;
+            border-radius: 5px;
           }
 
           @media screen and (max-width: 767px) {
             .search-form {
-              max-width: 90%;
               margin: auto;
               display: flex;
-              padding: 20px 0px;
             }
           }
 
           .search-field {
-            padding: 10px 15px;
+            padding: 5px 15px;
             margin: auto;
             font-size: 1.2rem;
             line-height: 1.5em;
             color: #373d41;
             background-color: #fff;
             background-clip: padding-box;
-            border: 1px solid #c5c5c7;
             border-radius: 6px;
             -webkit-box-shadow: none;
             box-shadow: none;
             flex-grow: 1;
-            border-right: none;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+            border: 0;
             outline: none;
           }
           .search-submit {
-            background-color: #1a1a1a;
+            background-color: #141414;
             color: #ffffff;
-            font-weight: 700;
+            font-weight: 400;
             text-decoration: none;
             white-space: normal;
             -webkit-transition: none;
             transition: none;
             cursor: pointer;
             outline: 0;
-            padding: 10px;
+            padding: 5px 10px;
             font-size: 1rem;
             line-height: 1.25rem;
-            border-radius: 6px;
             border-width: 0;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;

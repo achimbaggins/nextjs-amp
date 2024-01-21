@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-const Sidebar = ({ categories, posts, urlRandom }) => {
+const Sidebar = ({ categories, posts, urlRandom, isHeader = false }) => {
   const router = useRouter();
   const url = urlRandom() > 5 ? "https://google.com" : "https://facebook.com";
+
+  const params = new URLSearchParams(router.query);
+  params.delete("search");
+  params.delete("page");
 
   return (
     <>
@@ -17,39 +21,40 @@ const Sidebar = ({ categories, posts, urlRandom }) => {
         </button>
         <nav toolbar="(min-width: 767px)" toolbar-target="desktop-sidebar">
           <ul className="menu">
-            <li>
-              <div className="sidebar-header">
+            <li className={`menu-header ${!isHeader && "hide"}`}>
+              <div>
                 <Link href={"/"}>
                   <h2>Private Blog Network</h2>
                 </Link>
                 <div className="side-border" />
               </div>
-              <div style={{ display: "flex", marginBottom: 20 }}>
+              <div style={{ display: "flex", marginBottom: 20, marginTop: 20 }}>
                 <button
-                  className="btn-outline"
+                  className="btn btn-outline"
                   on={`tap:AMP.navigateTo(url="${url}", target=_blank)`}
                 >
                   Daftar
                 </button>
                 <button
-                  className="btn-default"
+                  className="btn btn-default"
                   on={`tap:AMP.navigateTo(url="${url}", target=_blank)`}
                 >
                   Masuk
                 </button>
               </div>
             </li>
+
             {posts ? (
-              <li>
+              <li className="last-post">
                 <h2 className="submenu-header">Berita Terbaru</h2>
-                <ul className="sub-menu">
+                <ul className="sub-menu ">
                   {posts.map((val, key) => {
                     return (
-                      <Link key={key} href={`/post/${val.slug}`}>
-                        <div className="item">
-                          <h2 className="item-title">{val.title.rendered}</h2>
-                        </div>
-                      </Link>
+                      <li key={key}>
+                        <Link href={`/post/${val.slug}`} className="item-title">
+                          {val.title.rendered}
+                        </Link>
+                      </li>
                     );
                   })}
                   <li className="item-more">
@@ -65,7 +70,9 @@ const Sidebar = ({ categories, posts, urlRandom }) => {
                     return (
                       <li key={index}>
                         <Link
-                          href={`/categories/${cat.slug}/${cat.id}`}
+                          href={`/categories/${cat.slug}/${
+                            cat.id
+                          }?${params.toString()}`}
                           className={
                             router.query.name === cat.slug ? "active" : ""
                           }
@@ -101,9 +108,8 @@ const Sidebar = ({ categories, posts, urlRandom }) => {
           }
 
           #desktop-sidebar {
-            width: 250px;
-            background: #fafafa;
-            padding: 0px 20px;
+            position: absolute;
+            max-width: 240px;
           }
 
           #desktop-sidebar .menu {
@@ -111,26 +117,19 @@ const Sidebar = ({ categories, posts, urlRandom }) => {
             flex-direction: column;
           }
 
-          .sidebar-header {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
-            margin: 4rem 0px;
-          }
-
-          .sidebar-header h2 {
-            margin: 0px;
-          }
-
           a > h2 {
             font-size: 2.5rem;
           }
 
-          .sidebar-header .side-border {
+          .menu-header.hide {
+            display: none;
+          }
+
+          .menu-header .side-border {
             width: 60px;
             height: 2px;
             border-radius: 20px;
-            background-color: #04aa6d;
+            background-color: black;
             margin-top: 10px;
           }
 
@@ -147,6 +146,7 @@ const Sidebar = ({ categories, posts, urlRandom }) => {
             border: 1px solid #f2f2f2;
             padding: 10px;
             border-radius: 5px;
+            text-wrap: wrap;
           }
 
           .item-more {
@@ -155,14 +155,25 @@ const Sidebar = ({ categories, posts, urlRandom }) => {
             text-align: center;
           }
 
-          .item .item-title {
+          .last-post {
+            padding-right: 25px;
+          }
+
+          .sub-menu {
+            margin-top: 15px;
+          }
+
+          .sub-menu .item-title {
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             font-size: 1.2rem;
+            font-weight: 600;
             margin: 0;
+            margin-bottom: 10px;
+            color: #121212;
           }
 
           .item p {
@@ -174,36 +185,29 @@ const Sidebar = ({ categories, posts, urlRandom }) => {
           button {
             margin-right: 10px;
             border-radius: 10px;
+            cursor: pointer;
           }
 
           button:last-child {
             margin-right: 0px;
           }
 
-          .btn-outline {
-            background-color: white;
-            border: 1px solid #04aa6d;
-            color: #04aa6d;
-            padding: 8px;
-            flex: 1;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            cursor: pointer;
+          .btn {
+            font-size: 1.2rem;
+            font-weight: 400;
+            padding: 8px 20px;
+            border-radius: 5px;
           }
 
           .btn-default {
-            background-color: #04aa6d;
-            border: 1px solid #04aa6d;
+            border: 1px solid black;
+            background: black;
             color: white;
-            padding: 8px;
-            flex: 1;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            cursor: pointer;
+          }
+
+          .btn-outline {
+            border: 1px solid black;
+            color: black;
           }
 
           ul {
@@ -236,12 +240,21 @@ const Sidebar = ({ categories, posts, urlRandom }) => {
               padding: 0 20px;
             }
 
-            .menu {
-              padding: 0px 20px;
-            }
-
             .menu li a {
               font-size: 14px;
+            }
+          }
+
+          .sidebar-search {
+            display: none;
+          }
+
+          @media screen and (max-width: 425px) {
+            .sidebar {
+              padding-top: 20px;
+            }
+            .menu-header.hide {
+              display: block;
             }
           }
         `}

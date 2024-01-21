@@ -1,19 +1,9 @@
 import Link from "next/link";
 
-const Post = ({ post }) => {
+const Gridpost = ({ post }) => {
   return (
-    <div className="post">
-      <div className="post-img">
-        <amp-img
-          width="auto"
-          height="200"
-          layout="fill"
-          alt="Apple"
-          className="item-img"
-          src={post.cover}
-        />
-      </div>
-      <div style={{ flex: 1 }}>
+    <div>
+      <div className="post">
         <Link href="/post/[slug]" as={`/post/${post.slug}`}>
           <h2
             dangerouslySetInnerHTML={{
@@ -46,19 +36,11 @@ const Post = ({ post }) => {
           .post {
             margin: auto;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             margin-bottom: 20px;
             font-size: 1.5rem;
-          }
-
-          .post-img {
-            position: relative;
-            width: 100%;
-            margin-right: 20px;
-          }
-
-          .post-img img {
-            object-fit: cover;
+            align-items: start;
+            justify-content: start;
           }
 
           .post h2 {
@@ -98,27 +80,10 @@ const Post = ({ post }) => {
             margin: 0;
           }
 
-          @media screen and (min-width: 1025px) {
-            .post-img {
-              height: 200px;
-              width: 35%;
-            }
-          }
-
           @media screen and (max-width: 1024px) {
-            .post {
-              display: flex;
-              flex-direction: row;
-            }
-
             .post p {
               margin: 0;
               font-size: 1.3rem;
-            }
-
-            .post-img {
-              width: 200px;
-              max-height: 200px;
             }
           }
 
@@ -131,22 +96,12 @@ const Post = ({ post }) => {
             .post h2 {
               margin-top: 10px;
             }
-
-            .post-img {
-              height: 200px;
-              width: 100%;
-            }
           }
 
           @media screen and (max-width: 425px) {
             .post {
               display: flex;
               flex-direction: column;
-            }
-
-            .post-img {
-              height: 200px;
-              width: 100%;
             }
           }
         `}
@@ -155,4 +110,4 @@ const Post = ({ post }) => {
   );
 };
 
-export default Post;
+export default Gridpost;

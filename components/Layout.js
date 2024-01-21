@@ -1,77 +1,19 @@
-import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
+import { useRouter } from "next/router";
+import LayoutDefault from "./LayoutDefault";
+import LayoutFirst from "./LayoutFirst";
+import LayoutCleanSide from "./LayoutCleanSide";
 
 const Layout = (props) => {
-  return (
-    <div className="site-wrapper">
-      <Navbar />
-      <Sidebar
-        categories={props.categories}
-        posts={props.posts}
-        urlRandom={props.urlRandom}
-      />
-      <div className="content-wrapper">{props.children}</div>
+  const router = useRouter();
+  const theme = router.query?.theme ?? "";
 
-      <style jsx global>{`
-        html {
-          box-sizing: border-box;
-          font-size: 10px;
-        }
-        *,
-        *::after,
-        *::before {
-          box-sizing: inherit;
-        }
-
-        body {
-          margin: 0;
-          padding: 0;
-          font-weight: 400;
-          line-height: 1.8;
-          background: #fff;
-          color: #7a7a7a;
-          font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI",
-            "Fira Sans", Avenir, "Helvetica Neue", "Lucida Grande", sans-serif;
-          text-rendering: optimizeLegibility;
-        }
-
-        h1,
-        h2 {
-          color: #333;
-          margin: 50px 0 25px;
-          line-height: 1.3;
-        }
-
-        h1 {
-          font-weight: 700;
-          margin: 0 0 0px;
-          font-size: 3.2rem;
-        }
-
-        .site-wrapper {
-          display: flex;
-        }
-
-        .content-wrapper {
-          flex: 1;
-          max-height: 100vh;
-          overflow-y: scroll;
-          margin: 0 auto;
-        }
-
-        @media screen and (max-width: 767px) {
-          .site-wrapper {
-            display: block;
-          }
-        }
-
-        a {
-          text-decoration: none;
-          color: black;
-        }
-      `}</style>
-    </div>
-  );
+  if (theme === "1") {
+    return <LayoutFirst {...props} />;
+  } else if (theme === "2") {
+    return <LayoutCleanSide {...props} />;
+  } else {
+    return <LayoutDefault {...props} />;
+  }
 };
 
 export default Layout;

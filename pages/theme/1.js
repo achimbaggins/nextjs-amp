@@ -1,11 +1,12 @@
-import Post from "../../../components/Post";
+import Post from "../../components/Post";
 import Recommendations from "@/components/Recommendations";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import Pagination from "@/components/Pagination";
+import { useRouter } from "next/router";
 import Empty from "@/components/Empty";
 import { baseUrl } from "@/services/url";
-import Layout from "@/components/Layout";
+import LayoutCleanSide from "@/components/LayoutCleanSide";
+import Gridpost from "@/components/GridPost";
 
 export const config = { amp: true };
 function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
@@ -14,25 +15,29 @@ function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
   return (
     <>
       <Head>
-        <title>All Categories</title>
-        <link rel="canonical" href={router.asPath} />
+        <title>Home | Private Blog Network</title>
+        <meta name="description" content="Private blog adalah bagian da" />
+        <link rel="canonical" href={router.pathname}></link>
       </Head>
-
-      <Layout categories={categories} urlRandom={urlRandom} search={search}>
+      <LayoutCleanSide
+        categories={categories}
+        urlRandom={urlRandom}
+        search={search}
+      >
         {posts.length > 0 ? (
           <>
             <Recommendations posts={lastPosts} />
-            <div className="post-list">
+            <div className="grid-view">
               {posts.map((post) => (
-                <Post key={post.id} post={post} />
+                <Gridpost key={post.id} post={post} />
               ))}
             </div>
-            <Pagination totalPages={totalPages} />
           </>
         ) : (
           <Empty />
         )}
-      </Layout>
+        <Pagination totalPages={totalPages} />
+      </LayoutCleanSide>
     </>
   );
 }
@@ -51,9 +56,7 @@ Home.getInitialProps = async (context) => {
     ? `&page=${context.query.page}&per_page=${10}`
     : `&page=${1}&per_page=${10}`;
 
-  const res = await fetch(
-    `${baseUrl}/posts?categories=${context.query.id}&_embed${searchParam}${pageParam}`
-  );
+  const res = await fetch(`${baseUrl}/posts?_embed&${searchParam}${pageParam}`);
 
   const resLastPosts = await fetch(
     `${baseUrl}/posts?_embed&page=${1}&per_page=${10}`
@@ -100,7 +103,7 @@ Home.getInitialProps = async (context) => {
     lastPosts: customResLastPosts,
     categories: customeCat,
     search: context.query?.search ?? "",
-    urlRandom,
+    urlRandom: urlRandom,
   };
 };
 
