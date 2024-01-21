@@ -1,9 +1,12 @@
 import Sidebar from "./Sidebar";
 import Search from "./Search";
+import { useRouter } from "next/router";
 
 const LayoutFirst = (props) => {
   const url =
     props.urlRandom() > 5 ? "https://google.com" : "https://facebook.com";
+
+  const router = useRouter();
 
   return (
     <>
@@ -11,7 +14,7 @@ const LayoutFirst = (props) => {
         <button on="tap:sidebar.toggle" className={"sidebar-trigger"}>
           ☰
         </button>
-        <Search action={"/?theme=1"} value={props.search} />
+        <Search action={router.asPath} value={props.search} />
       </header>
       <div className="site-content">
         <div className="site-wrapper">
@@ -30,7 +33,7 @@ const LayoutFirst = (props) => {
               <label style={{ fontSize: "1.8rem", color: "black" }}>
                 Search :{" "}
               </label>
-              <Search action={"/"} value={props.search} />
+              <Search action={router.asPath} value={props.search} />
             </div>
           </div>
         </div>

@@ -34,7 +34,7 @@ export default function Search({ value, action }) {
           defaultValue={value}
           placeholder="Search..."
         />
-        <input type="submit" value="Submit" className="search-submit" />
+        <input type="submit" value="Search" className="search-submit" />
       </form>
       <style jsx>
         {`

@@ -8,9 +8,6 @@ const LayoutCleanSide = (props) => {
     props.urlRandom() > 5 ? "https://google.com" : "https://facebook.com";
   const router = useRouter();
   const params = new URLSearchParams(router.query);
-  params.delete("name");
-  params.delete("id");
-  params.delete("page");
 
   return (
     <>
@@ -20,7 +17,7 @@ const LayoutCleanSide = (props) => {
             <button on="tap:sidebar.toggle" className={"sidebar-trigger"}>
               ☰
             </button>
-            <Link href={`/?${params.toString()}`} className="brand">
+            <Link href={`/?theme=${params.get("theme")}`} className="brand">
               Blog Network
             </Link>
           </div>
