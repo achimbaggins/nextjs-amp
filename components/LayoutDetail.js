@@ -3,8 +3,7 @@ import Sidebar from "./Sidebar";
 import Search from "./Search";
 
 const LayoutDetail = (props) => {
-  const url =
-    props.urlRandom() > 5 ? "https://google.com" : "https://facebook.com";
+  const url = "/blank";
   return (
     <>
       <header>

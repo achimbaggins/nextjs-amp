@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 const Sidebar = ({ categories, posts, urlRandom, isHeader = false }) => {
   const router = useRouter();
-  const url = urlRandom() > 5 ? "https://google.com" : "https://facebook.com";
+  const url = "/blank";
 
   const params = new URLSearchParams(router.query);
   params.delete("search");

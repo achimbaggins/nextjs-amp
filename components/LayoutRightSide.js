@@ -4,8 +4,7 @@ import Search from "./Search";
 import { useRouter } from "next/router";
 
 const LayoutRightSide = (props) => {
-  const url =
-    props.urlRandom() > 5 ? "https://google.com" : "https://facebook.com";
+  const url = "/blank";
 
   const router = useRouter();
   const params = new URLSearchParams(router.query);
