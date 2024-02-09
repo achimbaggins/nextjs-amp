@@ -8,15 +8,61 @@ import LayoutDetail from "@/components/LayoutDetail";
 
 const inter = Inter({ subsets: ["latin"] });
 export const config = { amp: true };
+
 function Home({ post, categories, lastPosts, urlRandom, relatedNews, search }) {
   const router = useRouter();
+  const robotsString = Object.entries(post.yoast_head_json.robots)
+    .map(([key, value]) => {
+      if (value.includes(":")) {
+        return `${key}:${value.split(":")[1]}`;
+      }
+      return key;
+    })
+    .join(",");
 
   return (
     <>
       <Head>
-        <title>{post.title.rendered}</title>
-        <meta property="og:title" content={post.title.rendered} key="title" />
+        <meta name="robots" content={robotsString} />
+        <title>{post.yoast_head_json.title}</title>
         <link rel="canonical" href={router.asPath} />
+        <meta property="og:locale" content={post.yoast_head_json.og_locale} />
+        <meta property="og:type" content={post.yoast_head_json.og_type} />
+        <meta property="og:title" content={post.yoast_head_json.og_title} />
+        <meta
+          property="og:description"
+          content={post.yoast_head_json.og_description}
+        />
+        <meta property="og:url" content={post.yoast_head_json.og_url} />
+        <meta
+          property="og:site_name"
+          content={post.yoast_head_json.og_site_name}
+        />
+        <meta
+          property="og:article_published_time"
+          content={post.yoast_head_json.article_published_time}
+        />
+        <meta
+          property="og:article_modified_time"
+          content={post.yoast_head_json.article_modified_time}
+        />
+        <meta
+          property="og:image"
+          content={post.yoast_head_json.og_image[0]["url"]}
+        />
+        <meta
+          property="og:image:height"
+          content={post.yoast_head_json.og_image[0]["height"]}
+        />
+        <meta
+          property="og:image:width"
+          content={post.yoast_head_json.og_image[0]["width"]}
+        />
+        <meta
+          property="og:image:type"
+          content={post.yoast_head_json.og_image[0]["type"]}
+        />
+        <meta property="author" content={post.yoast_head_json.author} />
       </Head>
       <LayoutDetail
         categories={categories}
