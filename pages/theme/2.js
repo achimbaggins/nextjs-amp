@@ -1,12 +1,12 @@
-import Post from "../../components/Post";
-import Recommendations from "@/components/Recommendations";
-import Head from "next/head";
-import Pagination from "@/components/Pagination";
-import { useRouter } from "next/router";
-import Empty from "@/components/Empty";
-import { baseUrl } from "@/services/url";
-import Gridpost from "@/components/GridPost";
-import LayoutFirst from "@/components/LayoutFirst";
+import Post from '../../components/Post';
+import Recommendations from '@/components/Recommendations';
+import Head from 'next/head';
+import Pagination from '@/components/Pagination';
+import { useRouter } from 'next/router';
+import Empty from '@/components/Empty';
+import { baseUrl, postsPath, categoriesPath } from '@/services/url';
+import Gridpost from '@/components/GridPost';
+import LayoutFirst from '@/components/LayoutFirst';
 
 export const config = { amp: true };
 function Home({ posts, categories, search, totalPages, lastPosts, urlRandom }) {
@@ -50,19 +50,21 @@ Home.getInitialProps = async (context) => {
 
   const searchParam = context.query.search
     ? `&search=${encodeURIComponent(context.query.search)}`
-    : "";
+    : '';
 
   const pageParam = context.query.page
     ? `&page=${context.query.page}&per_page=${10}`
     : `&page=${1}&per_page=${10}`;
 
-  const res = await fetch(`${baseUrl}/posts?_embed&${searchParam}${pageParam}`);
-
-  const resLastPosts = await fetch(
-    `${baseUrl}/posts?_embed&page=${1}&per_page=${10}`
+  const res = await fetch(
+    `${baseUrl}/${postsPath}?_embed&${searchParam}${pageParam}`
   );
 
-  const resCat = await fetch(`${baseUrl}/categories`);
+  const resLastPosts = await fetch(
+    `${baseUrl}/${postsPath}?_embed&page=${1}&per_page=${10}`
+  );
+
+  const resCat = await fetch(`${baseUrl}/${categoriesPath}`);
   const categories = await resCat.json();
   const posts = await res.json();
   const lastPosts = await resLastPosts.json();
@@ -76,25 +78,25 @@ Home.getInitialProps = async (context) => {
   });
 
   const customePosts = posts.map((val) => {
-    val.cover = val._embedded["wp:featuredmedia"]
-      ? val._embedded["wp:featuredmedia"][0]["media_details"]["sizes"][
-          "thumbnail"
-        ]?.["source_url"]
-      : "https://d12v9rtnomnebu.cloudfront.net/oursite/logo_white.png";
+    val.cover = val._embedded['wp:featuredmedia']
+      ? val._embedded['wp:featuredmedia'][0]['media_details']['sizes'][
+          'thumbnail'
+        ]?.['source_url']
+      : 'https://d12v9rtnomnebu.cloudfront.net/oursite/logo_white.png';
     return val;
   });
 
   const customResLastPosts = lastPosts.map((val) => {
-    val.cover = val._embedded["wp:featuredmedia"]
-      ? val._embedded["wp:featuredmedia"][0]["media_details"]["sizes"][
-          "thumbnail"
-        ]?.["source_url"]
-      : "https://d12v9rtnomnebu.cloudfront.net/oursite/logo_white.png";
+    val.cover = val._embedded['wp:featuredmedia']
+      ? val._embedded['wp:featuredmedia'][0]['media_details']['sizes'][
+          'thumbnail'
+        ]?.['source_url']
+      : 'https://d12v9rtnomnebu.cloudfront.net/oursite/logo_white.png';
     return val;
   });
 
-  const wpTotal = res.headers.get("x-wp-total");
-  const wpTotalPages = res.headers.get("X-WP-TotalPages");
+  const wpTotal = res.headers.get('x-wp-total');
+  const wpTotalPages = res.headers.get('X-WP-TotalPages');
 
   return {
     wpTotal: wpTotal,
@@ -102,7 +104,7 @@ Home.getInitialProps = async (context) => {
     posts: customePosts,
     lastPosts: customResLastPosts,
     categories: customeCat,
-    search: context.query?.search ?? "",
+    search: context.query?.search ?? '',
     urlRandom: urlRandom,
   };
 };

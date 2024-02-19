@@ -1,24 +1,24 @@
-import { Inter } from "next/font/google";
-import Layout from "../../components/Layout";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { baseUrl } from "@/services/url";
-import LayoutDetail from "@/components/LayoutDetail";
+import { Inter } from 'next/font/google';
+import Layout from '../../components/Layout';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { baseUrl, postsPath, categoriesPath } from '@/services/url';
+import LayoutDetail from '@/components/LayoutDetail';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 export const config = { amp: true };
 
 function Home({ post, categories, lastPosts, urlRandom, relatedNews, search }) {
   const router = useRouter();
   const robotsString = Object.entries(post.yoast_head_json.robots)
     .map(([key, value]) => {
-      if (value.includes(":")) {
-        return `${key}:${value.split(":")[1]}`;
+      if (value.includes(':')) {
+        return `${key}:${value.split(':')[1]}`;
       }
       return key;
     })
-    .join(",");
+    .join(',');
 
   return (
     <>
@@ -48,19 +48,19 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews, search }) {
         />
         <meta
           property="og:image"
-          content={post.yoast_head_json.og_image[0]["url"]}
+          content={post.yoast_head_json.og_image[0]['url']}
         />
         <meta
           property="og:image:height"
-          content={post.yoast_head_json.og_image[0]["height"]}
+          content={post.yoast_head_json.og_image[0]['height']}
         />
         <meta
           property="og:image:width"
-          content={post.yoast_head_json.og_image[0]["width"]}
+          content={post.yoast_head_json.og_image[0]['width']}
         />
         <meta
           property="og:image:type"
-          content={post.yoast_head_json.og_image[0]["type"]}
+          content={post.yoast_head_json.og_image[0]['type']}
         />
         <meta property="author" content={post.yoast_head_json.author} />
       </Head>
@@ -74,7 +74,7 @@ function Home({ post, categories, lastPosts, urlRandom, relatedNews, search }) {
         <div className={`${inter.className} content-detail `}>
           <ul className="breadcrumb">
             <li>
-              <Link href={"/"}>Home &#8250;</Link>{" "}
+              <Link href={'/'}>Home &#8250;</Link>{' '}
             </li>
             <li>{post.slug}</li>
           </ul>
@@ -174,13 +174,13 @@ Home.getInitialProps = async (context) => {
     const value = Math.floor(Math.random() * 10);
     return value;
   };
-  const res = await fetch(`${baseUrl}/posts?slug=${context.query.slug}`);
+  const res = await fetch(`${baseUrl}/${postsPath}?slug=${context.query.slug}`);
 
   const resLastPosts = await fetch(
-    `${baseUrl}/posts?_embed&page=${1}&per_page=${5}`
+    `${baseUrl}/${postsPath}?_embed&page=${1}&per_page=${5}`
   );
 
-  const resCat = await fetch(`${baseUrl}/categories`);
+  const resCat = await fetch(`${baseUrl}/${categoriesPath}`);
 
   const categories = await resCat.json();
   const post = await res.json();
@@ -196,16 +196,17 @@ Home.getInitialProps = async (context) => {
   });
 
   const lastPosts = posts.map((val) => {
-    val.cover = val._embedded["wp:featuredmedia"]
-      ? val._embedded["wp:featuredmedia"][0]["media_details"]["sizes"][
-          "thumbnail"
-        ]?.["source_url"]
-      : "https://d12v9rtnomnebu.cloudfront.net/oursite/logo_white.png";
+    val.cover = val._embedded && val._embedded['wp:featuredmedia']
+      ? val._embedded['wp:featuredmedia'][0]['media_details']['sizes'][
+          'thumbnail'
+        ]?.['source_url']
+      : 'https://d12v9rtnomnebu.cloudfront.net/oursite/logo_white.png';
     return val;
   });
 
+  var resolveCat = post && post[0] && post[0][categoriesPath][0];
   const postByCat = await fetch(
-    `${baseUrl}/posts?categories=${post[0]["categories"][0]}`
+    `${baseUrl}/${postsPath}?${categoriesPath}=${resolveCat}`
   );
   const relatedNews = await postByCat.json();
 
@@ -215,7 +216,7 @@ Home.getInitialProps = async (context) => {
     lastPosts: lastPosts,
     urlRandom,
     relatedNews,
-    search: context.query?.search ?? "",
+    search: context.query?.search ?? '',
   };
 };
 
